@@ -28,10 +28,10 @@ extension XLKLine {
         var decreaseColor: UIColor = Color(hex: 0x00B07C)
         
         /// 量视图高度
-        var volumeViewHeightScale: CGFloat = 0.2
+        var volumeViewHeightScale: CGFloat = 0.15
         
         /// 副视图高度
-        var accessoryViewHeightScale: CGFloat = 0.2
+        var accessoryViewHeightScale: CGFloat = 0.15
         
         /// 日期视图高度
         var dateViewHeight: CGFloat = 10
@@ -60,8 +60,14 @@ extension XLKLine {
         /// 蜡烛图指标线宽度
         var candleStickIndicatorLineWidth: CGFloat = 0.8
         
+        /// 交易量指标线宽度
+        var volumeIndicatorLineWidth: CGFloat = 0.8
+        
         /// 蜡烛图内边距
         var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        /// 交易量内边距
+        var volumeContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         /// 垂直网格线数量
         var verticalAxisScaleLineCount: Int = 4
@@ -85,20 +91,14 @@ extension XLKLine {
         /// 蜡烛图MA参数
         var candleStickMADays: [Int] = [5, 10]
         
-        /// 蜡烛图EMA参数
-        var candleStickEMADays: [Int] = [5, 10]
-        
         /// 蜡烛图BOLL指标N参数
         var candleStickBOLLN: Int = 20
         
         /// 蜡烛图BOLL指标P参数
-        var candleStickBOLLP: Int = 2
+        var candleStickBOLLP: Double = 2
         
         /// 成交量MA参数
         var volumeMADays: [Int] = [5, 10]
-        
-        /// 成交量EMA参数
-        var volumeEMADays: [Int] = [12, 26]
         
         /// 蜡烛图MA5指标颜色
         var candleStickMA5Color: UIColor = Color(hex: 0x4498EA)
@@ -108,13 +108,7 @@ extension XLKLine {
         
         /// 蜡烛图MA30指标颜色
         var candleStickMA30Color: UIColor = Color(hex: 0xFFFF00)
-        
-        /// 蜡烛图EMA5指标颜色
-        var candleStickEMA5Color: UIColor = Color(hex: 0x4498EA)
-        
-        /// 蜡烛图EMA10指标颜色
-        var candleStickEMA10Color: UIColor = Color(hex: 0x00FFFF)
-        
+                
         /// 蜡烛图BOLL UP指标颜色
         var candleStickBOLLUp: UIColor = Color(hex: 0x00FFFF)
         
@@ -160,7 +154,7 @@ extension XLKLine {
         ///   - param: 指标参数
         /// - Returns: 颜色
         func indicatorColor(type: XLKLine.Model.IndicatorType,
-                            param: Int) -> UIColor {
+                            param: Int? = nil) -> UIColor {
             
             switch type {
             case .MA where param == 5:          //  MA5
@@ -169,10 +163,6 @@ extension XLKLine {
                 return candleStickMA10Color
             case .MA where param == 30:         //  MA30
                 return candleStickMA30Color
-            case .EMA where param == 5:         //  EMA5
-                return candleStickEMA5Color
-            case .EMA where param == 10:        //  EMA10
-                return candleStickEMA10Color
             case .BOLL_UP:                      //  BOLL UP
                 return candleStickBOLLUp
             case .BOLL_MB:                      //  BOLL MB
@@ -183,10 +173,6 @@ extension XLKLine {
                 return volumeMA5Color
             case .MA_VOLUME where param == 10:  //  Volume MA10
                 return volumeMA10Color
-            case .EMA_VOLUME where param == 12: //  Volume EMA12
-                return volumeEMA12Color
-            case .EMA_VOLUME where param == 26: //  Volume EMA26
-                return volumeEMA26Color
             case .MACD:                         //  MACD
                 return MACDColor
             case .DIF:                          //  MACD DIF

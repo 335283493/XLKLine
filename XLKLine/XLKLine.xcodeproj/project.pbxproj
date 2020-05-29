@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		718C4D944D24DD1774A5ABBD /* Pods_XLKLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */; };
+		9981DFAB247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */; };
 		99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */; };
+		99CEAA46247FA73400E689FB /* XLKLine.VolumeMA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */; };
+		99CEAA48247FB2FC00E689FB /* XLKLine.Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */; };
 		99D5FB842463E02200A8C716 /* XLKLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 99D5FB822463E02200A8C716 /* XLKLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99D5FB9D2463E03700A8C716 /* XLKLine.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5FB8C2463E03700A8C716 /* XLKLine.Config.swift */; };
 		99D5FB9E2463E03700A8C716 /* XLKLine.Config.Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5FB8D2463E03700A8C716 /* XLKLine.Config.Theme.swift */; };
@@ -36,10 +40,45 @@
 		99D5FBD42466A40400A8C716 /* XLKLine.CandleStickMA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5FBD32466A40400A8C716 /* XLKLine.CandleStickMA.swift */; };
 		99D5FBD92469460300A8C716 /* XLKLine.Manager+LimitValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5FBD82469460300A8C716 /* XLKLine.Manager+LimitValue.swift */; };
 		99D5FBDB2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D5FBDA2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift */; };
+		99E14937247E3CE500693782 /* XLKLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5FB7F2463E02200A8C716 /* XLKLine.framework */; };
+		99E14938247E3CE500693782 /* XLKLine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99D5FB7F2463E02200A8C716 /* XLKLine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1E48E50A4D6256690727AAF /* Pods_XLKLineExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57C8C31E09CD7FBAEEE19A /* Pods_XLKLineExample.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		99E14939247E3CE500693782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 99D5FB762463E02200A8C716 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 99D5FB7E2463E02200A8C716;
+			remoteInfo = XLKLine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		99E1493B247E3CE500693782 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				99E14938247E3CE500693782 /* XLKLine.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		21B6110E2D3BC4794AD3CDA8 /* Pods-XLKLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLine.release.xcconfig"; path = "Target Support Files/Pods-XLKLine/Pods-XLKLine.release.xcconfig"; sourceTree = "<group>"; };
+		3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XLKLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BFDECB5A505F98C7CD3E3A4 /* Pods-XLKLineExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLineExample.release.xcconfig"; path = "Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample.release.xcconfig"; sourceTree = "<group>"; };
+		80D372031E53020B44301B9F /* Pods-XLKLineExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLineExample.debug.xcconfig"; path = "Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample.debug.xcconfig"; sourceTree = "<group>"; };
+		952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLine.debug.xcconfig"; path = "Target Support Files/Pods-XLKLine/Pods-XLKLine.debug.xcconfig"; sourceTree = "<group>"; };
+		9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickBOLL.swift; sourceTree = "<group>"; };
 		99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+Display.swift"; sourceTree = "<group>"; };
+		99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.VolumeMA.swift; sourceTree = "<group>"; };
+		99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.Volume.swift; sourceTree = "<group>"; };
 		99D5FB7F2463E02200A8C716 /* XLKLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XLKLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D5FB822463E02200A8C716 /* XLKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLKLine.h; sourceTree = "<group>"; };
 		99D5FB832463E02200A8C716 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +111,7 @@
 		99D5FBD32466A40400A8C716 /* XLKLine.CandleStickMA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickMA.swift; sourceTree = "<group>"; };
 		99D5FBD82469460300A8C716 /* XLKLine.Manager+LimitValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+LimitValue.swift"; sourceTree = "<group>"; };
 		99D5FBDA2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+IndicatorData.swift"; sourceTree = "<group>"; };
+		9F57C8C31E09CD7FBAEEE19A /* Pods_XLKLineExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XLKLineExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718C4D944D24DD1774A5ABBD /* Pods_XLKLine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,18 +127,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E14937247E3CE500693782 /* XLKLine.framework in Frameworks */,
+				F1E48E50A4D6256690727AAF /* Pods_XLKLineExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0169F48CB8EA8031CE293C22 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */,
+				21B6110E2D3BC4794AD3CDA8 /* Pods-XLKLine.release.xcconfig */,
+				80D372031E53020B44301B9F /* Pods-XLKLineExample.debug.xcconfig */,
+				6BFDECB5A505F98C7CD3E3A4 /* Pods-XLKLineExample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		99D5FB752463E02200A8C716 = {
 			isa = PBXGroup;
 			children = (
 				99D5FB812463E02200A8C716 /* XLKLine */,
 				99D5FBAF2463E06800A8C716 /* XLKLineExample */,
 				99D5FB802463E02200A8C716 /* Products */,
+				0169F48CB8EA8031CE293C22 /* Pods */,
+				E86D9D0404D78E4E05EF01D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +227,9 @@
 				99D5FB962463E03700A8C716 /* XLKLine.Model.IndicatorType.swift */,
 				99D5FB972463E03700A8C716 /* XLKLine.Model.Indicator.swift */,
 				99D5FBD32466A40400A8C716 /* XLKLine.CandleStickMA.swift */,
+				9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */,
+				99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */,
+				99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */,
 				99D5FBD124655D7800A8C716 /* XLKLine.CandleStickBarBrushModel.swift */,
 			);
 			path = Model;
@@ -219,6 +278,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		E86D9D0404D78E4E05EF01D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */,
+				9F57C8C31E09CD7FBAEEE19A /* Pods_XLKLineExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -237,6 +305,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99D5FB872463E02200A8C716 /* Build configuration list for PBXNativeTarget "XLKLine" */;
 			buildPhases = (
+				E84DD005860F8C0D3DDFC751 /* [CP] Check Pods Manifest.lock */,
 				99D5FB7A2463E02200A8C716 /* Headers */,
 				99D5FB7B2463E02200A8C716 /* Sources */,
 				99D5FB7C2463E02200A8C716 /* Frameworks */,
@@ -255,13 +324,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99D5FBBF2463E06A00A8C716 /* Build configuration list for PBXNativeTarget "XLKLineExample" */;
 			buildPhases = (
+				EA0169F8DF499AF8D8B2C86B /* [CP] Check Pods Manifest.lock */,
 				99D5FBAA2463E06800A8C716 /* Sources */,
 				99D5FBAB2463E06800A8C716 /* Frameworks */,
 				99D5FBAC2463E06800A8C716 /* Resources */,
+				CECF6709FB1F653D1919C334 /* [CP] Embed Pods Frameworks */,
+				99E1493B247E3CE500693782 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				99E1493A247E3CE500693782 /* PBXTargetDependency */,
 			);
 			name = XLKLineExample;
 			productName = XLKLineExample;
@@ -325,6 +398,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CECF6709FB1F653D1919C334 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E84DD005860F8C0D3DDFC751 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XLKLine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA0169F8DF499AF8D8B2C86B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XLKLineExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		99D5FB7B2463E02200A8C716 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -342,12 +479,15 @@
 				99D5FBA12463E03700A8C716 /* XLKLine.Manager.swift in Sources */,
 				99D5FBC92463F53C00A8C716 /* XLKLine.LineBrush.swift in Sources */,
 				99D5FB9F2463E03700A8C716 /* XLKLine.swift in Sources */,
+				99CEAA46247FA73400E689FB /* XLKLine.VolumeMA.swift in Sources */,
 				99D5FBD42466A40400A8C716 /* XLKLine.CandleStickMA.swift in Sources */,
 				99D5FB9E2463E03700A8C716 /* XLKLine.Config.Theme.swift in Sources */,
+				99CEAA48247FB2FC00E689FB /* XLKLine.Volume.swift in Sources */,
 				99D5FBD92469460300A8C716 /* XLKLine.Manager+LimitValue.swift in Sources */,
 				99D5FBA72463E03700A8C716 /* XLKLine.DateView.swift in Sources */,
 				99D5FBA92463E03700A8C716 /* XLKLine.CandleStickView.swift in Sources */,
 				99D5FBA42463E03700A8C716 /* XLKLine.Model.IndicatorType.swift in Sources */,
+				9981DFAB247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift in Sources */,
 				99D5FBA32463E03700A8C716 /* XLKLine.Model.swift in Sources */,
 				99D5FBA52463E03700A8C716 /* XLKLine.Model.Indicator.swift in Sources */,
 				99D5FBCC2463F60600A8C716 /* XLKLineDrawVerticalAxisScaleLineProtocol.swift in Sources */,
@@ -366,6 +506,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		99E1493A247E3CE500693782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 99D5FB7E2463E02200A8C716 /* XLKLine */;
+			targetProxy = 99E14939247E3CE500693782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		99D5FBB62463E06800A8C716 /* Main.storyboard */ = {
@@ -509,6 +657,7 @@
 		};
 		99D5FB882463E02200A8C716 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -533,6 +682,7 @@
 		};
 		99D5FB892463E02200A8C716 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21B6110E2D3BC4794AD3CDA8 /* Pods-XLKLine.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -557,6 +707,7 @@
 		};
 		99D5FBC02463E06A00A8C716 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80D372031E53020B44301B9F /* Pods-XLKLineExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -575,6 +726,7 @@
 		};
 		99D5FBC12463E06A00A8C716 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BFDECB5A505F98C7CD3E3A4 /* Pods-XLKLineExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

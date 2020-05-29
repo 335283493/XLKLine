@@ -21,17 +21,25 @@ extension XLKLine {
             drawVerticalAxisScaleLines()
         }
         
+        /// 重置
+        open func reloadData() {
+            
+            setNeedsDisplay()
+        }
+        
         // MARK: - Override
         public override func draw(_ rect: CGRect) {
             super.draw(rect)
-
+            
             drawAxisScaleLines()
+            drawVolumeBars()
+            drawVolumeIndicator()
         }
         
         public override func layoutSubviews() {
             super.layoutSubviews()
             
-//            backgroundColor = manager.config.candleStickBackgroundColor
+            //            backgroundColor = manager.config.candleStickBackgroundColor
             backgroundColor = .yellow
         }
         
@@ -63,5 +71,31 @@ extension XLKLine.VolumeView: XLKLineDrawVerticalAxisScaleLineProtocol {
                                    lineCount: manager.config.verticalAxisScaleLineCount,
                                    lineColor: manager.config.axisScaleLineColor,
                                    lineWidth: manager.config.axisScaleLineWidth)
+    }
+    
+    /// 绘制交易量
+    func drawVolumeBars() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let models = manager.displayVolumeBarModel(bounds: bounds)
+        for model in models {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
+    }
+    
+    /// 绘制交易量指标
+    open func drawVolumeIndicator() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let indicatorModels = manager.displayVolumeIndicatorModel(bounds: bounds)
+        for model in indicatorModels {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
     }
 }

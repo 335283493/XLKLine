@@ -96,13 +96,18 @@ public extension XLKLine.Manager {
         }
         
         let minCount = minDisplayCount(displayWidth: displayWidth,
-                                              config: config)
+                                       config: config)
+        let maxCount = maxDisplayCount(displayWidth: displayWidth,
+                                       config: config)
         if modelsCount < minCount { //  数据数量 小于 最小显示数量
             
             return modelsCount
         }
- 
-        return modelsCount - currentLocation
+        if modelsCount - maxCount < currentLocation {
+            return modelsCount - currentLocation
+        } else {
+            return maxCount
+        }
     }
     
     /// 显示范围

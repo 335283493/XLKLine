@@ -32,7 +32,7 @@ extension XLKLine {
             super.layoutSubviews()
             
 //            backgroundColor = manager.config.candleStickBackgroundColor
-            backgroundColor = .red
+            backgroundColor = .green
         }
         
         // MARK: - Init

@@ -26,8 +26,8 @@ extension XLKLine.CandleStickBarBrushModel {
                                 bounds: CGRect,
                                 contentInset: UIEdgeInsets,
                                 limitValue: XLKLine.LimitValue,
-                                config: XLKLine.Config) -> [XLKLine.CandleStickBarBrushModel] {
-
+                                config: XLKLine.Config) -> [XLKLineCandleStickBarBrushProtocol] {
+        
         let klineWidth = config.klineWidth
         let klineSpace = config.klineSpace
         let shadowLineWidth = config.klineShadowLineWidth
@@ -46,7 +46,7 @@ extension XLKLine.CandleStickBarBrushModel {
             let color = model.open <= model.close ? increaseColor : decreaseColor
             let bodyPostions = [CGPoint(x: x, y: open), CGPoint(x: x, y: close)]
             let shadowPostions = [CGPoint(x: x, y: high), CGPoint(x: x, y: low)]
-
+            
             let body = XLKLine.LineBrush.Model(positions: bodyPostions,
                                                lineColor: color,
                                                lineWidth: klineWidth)

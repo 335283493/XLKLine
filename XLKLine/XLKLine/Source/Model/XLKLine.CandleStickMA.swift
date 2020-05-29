@@ -29,9 +29,9 @@ public extension XLKLine.CandleStickMA {
     /// - Parameter index: 当前数据索引
     /// - Parameter models: 当前数据数组
     /// - Parameter days: 指标参数
-    static func generateMAs(models: [XLKLine.Model],
-                            index: Int,
-                            days: [Int]) {
+    static func generate(models: [XLKLine.Model],
+                         index: Int,
+                         days: [Int]) {
          
         let model = models[index]
         var ma: [String: Double] = [:]
@@ -58,27 +58,18 @@ public extension XLKLine.CandleStickMA {
                                    index: Int,
                                    models: [XLKLine.Model]) -> Double? {
         
-        if day <= 0 || index < (day - 1) {
+        if day <= 0 || index < day - 1 {
             
             return nil
         }
-        
+
         guard let modelSum = model.indicator.sumClose else {
             
             return nil
         }
         
-        if index == (day - 1) {
-            
-            return modelSum / Double(day)
-        } else {
-            
-            guard let beforeSum = models[index - day].indicator.sumClose else {
-                
-                return nil
-            }
-            return (modelSum - beforeSum) / Double(day)
-        }
+        let beforeSum: Double = index > day - 1 ? models[index - day].indicator.sumClose ?? 0 : 0
+        return (modelSum - beforeSum) / Double(day)
     }
 }
 
@@ -122,7 +113,7 @@ public extension XLKLine.CandleStickMA {
         for (index, model) in models.enumerated() {
             
             for (day, value) in model.indicator.MA ?? [:] {
-                
+       
                 let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
                 let point = CGPoint(x: x, y: y)

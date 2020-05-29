@@ -42,14 +42,6 @@ extension XLKLine.Manager {
                         maxValue = value > maxValue ? value : maxValue
                     }
                 }
-            case .EMA:
-                if let EMAs = model.indicator.EMA {
-                    for (_, value) in EMAs {
-                        
-                        minValue = value < minValue ? value : minValue
-                        maxValue = value > maxValue ? value : maxValue
-                    }
-                }
             case .BOLL:
                 if let value = model.indicator.BOLL_MB {
                     minValue = value < minValue ? value : minValue
@@ -103,13 +95,6 @@ extension XLKLine.Manager {
             case .MA_VOLUME:
                 if let MAs = model.indicator.MA_VOLUME {
                     for (_, value) in MAs {
-                        minValue = value < minValue ? value : minValue
-                        maxValue = value > maxValue ? value : maxValue
-                    }
-                }
-            case .EMA_VOLUME:
-                if let EMAs = model.indicator.EMA_VOLUME {
-                    for (_, value) in EMAs {
                         minValue = value < minValue ? value : minValue
                         maxValue = value > maxValue ? value : maxValue
                     }

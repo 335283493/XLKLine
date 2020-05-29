@@ -13,7 +13,7 @@ extension XLKLine {
     public class Color: UIColor {
         
         public convenience init(hex: UInt32,
-                         alpha: CGFloat = 1.0) {
+                                alpha: CGFloat = 1.0) {
             
             let red: CGFloat = CGFloat((hex >> 16) & 0xff) / 255.0
             let green: CGFloat = CGFloat((hex >> 8) & 0xff) / 255.0

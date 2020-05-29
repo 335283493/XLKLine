@@ -15,8 +15,6 @@ extension XLKLine.Model {
         case NONE       = ""
         case MA
         case MA_VOLUME
-        case EMA
-        case EMA_VOLUME
         case DIF
         case DEA
         case MACD
@@ -31,5 +29,16 @@ extension XLKLine.Model {
         case RSI
         case VOL
         case DMI
+    }
+}
+
+extension XLKLine.Model.IndicatorType {
+    
+    /// 布林线 上中下轨线
+    static var BOLLLines: [XLKLine.Model.IndicatorType] {
+        
+        return [.BOLL_UP,
+                .BOLL_MB,
+                .BOLL_DN]
     }
 }

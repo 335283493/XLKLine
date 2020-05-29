@@ -124,6 +124,7 @@ extension XLKLine {
             
             manager.updateCurrentLocation()
             candleStickView.reloadData()
+            volumeView.reloadData()
         }
         
         /// 配置Manager对象
