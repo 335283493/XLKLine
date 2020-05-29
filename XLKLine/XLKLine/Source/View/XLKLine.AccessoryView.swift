@@ -21,6 +21,12 @@ extension XLKLine {
             drawVerticalAxisScaleLines()
         }
         
+        /// 重置
+        open func reloadData() {
+            
+            setNeedsDisplay()
+        }
+        
         // MARK: - Override
         public override func draw(_ rect: CGRect) {
             super.draw(rect)
@@ -64,4 +70,43 @@ extension XLKLine.AccessoryView: XLKLineDrawVerticalAxisScaleLineProtocol {
                                    lineColor: manager.config.axisScaleLineColor,
                                    lineWidth: manager.config.axisScaleLineWidth)
     }
+    
+    /// 绘制指标
+    func drawIndicator() {
+        
+        switch manager.config.accessoryIndicatorType {
+        case .MACD:
+            drawMACDIndicator()
+        case .KDJ:
+            drawKDJIndicator()
+        default:
+            break
+        }
+    }
+    
+    /// 绘制MACD指标
+    func drawMACDIndicator() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        guard let model = manager.displayAccessoryMACD(bounds: bounds) else {
+            return
+        }
+        for model in model.MACD {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
+        XLKLine.LineBrush.draw(context: context,
+                               model: model.DIF)
+        XLKLine.LineBrush.draw(context: context,
+                               model: model.DEA)
+    }
+    
+    /// 绘制KDJ
+    func drawKDJIndicator() {
+        
+        
+    }
+    
 }

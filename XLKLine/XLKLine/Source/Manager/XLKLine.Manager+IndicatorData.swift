@@ -37,6 +37,12 @@ extension XLKLine.Manager {
             XLKLine.VolumeMA.generate(models: models,
                                       index: index,
                                       days: config.volumeMADays)
+            //  计算副视图MACD
+            XLKLine.AccessoryMACD.generate(models: models,
+                                           index: index,
+                                           S: config.accessoryMACDS,
+                                           L: config.accessoryMACDL,
+                                           M: config.accessoryMACDM)
             
             //            //  计算副视图指标
             //            //  计算副视图MACD指标

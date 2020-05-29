@@ -112,6 +112,7 @@ extension XLKLine {
         }
         
         open func displayVolumeIndicatorModel(bounds: CGRect) -> [XLKLineLineBrushProtocol] {
+            
             let type = config.candleStickIndicatorType
             let models = displayModels()
             guard let limitValue = Manager.volumeLimitValue(models: models,
@@ -122,6 +123,20 @@ extension XLKLine {
                                              bounds: bounds,
                                              limitValue: limitValue,
                                              config: config)
+        }
+        
+        open func displayAccessoryMACD(bounds: CGRect) -> XLKLine.AccessoryMACD.Response? {
+            
+            let type = config.candleStickIndicatorType
+            let models = displayModels()
+            guard let limitValue = Manager.volumeLimitValue(models: models,
+                                                            indicatorType: type) else {
+                                                                return nil
+            }
+            return XLKLine.AccessoryMACD.generate(models: models,
+                                                  bounds: bounds,
+                                                  limitValue: limitValue,
+                                                  config: config)
         }
         
         /// 重置当前位置

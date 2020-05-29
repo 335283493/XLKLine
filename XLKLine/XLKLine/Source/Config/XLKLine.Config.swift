@@ -15,6 +15,9 @@ extension XLKLine {
         /// 蜡烛图指标类型
         var candleStickIndicatorType: Model.IndicatorType = .MA
         
+        /// 副视图指标类型
+        var accessoryIndicatorType: Model.IndicatorType = .MACD
+        
         /// 背景颜色
         var backgroundColor: UIColor = Color(hex: 0x24262F)
         
@@ -63,11 +66,17 @@ extension XLKLine {
         /// 交易量指标线宽度
         var volumeIndicatorLineWidth: CGFloat = 0.8
         
+        /// 副视图
+        var accessoryIndicatorLineWidth: CGFloat = 0.8
+        
         /// 蜡烛图内边距
         var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         /// 交易量内边距
         var volumeContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
+        /// 交易量内边距
+        var accessoryContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         /// 垂直网格线数量
         var verticalAxisScaleLineCount: Int = 4
@@ -100,6 +109,15 @@ extension XLKLine {
         /// 成交量MA参数
         var volumeMADays: [Int] = [5, 10]
         
+        /// 副视图 MACD S 参数
+        var accessoryMACDS: Int = 12
+        
+        /// 副视图 MACD L 参数
+        var accessoryMACDL: Int = 26
+        
+        /// 副视图 MACD M 参数
+        var accessoryMACDM: Int = 9
+        
         /// 蜡烛图MA5指标颜色
         var candleStickMA5Color: UIColor = Color(hex: 0x4498EA)
         
@@ -110,13 +128,13 @@ extension XLKLine {
         var candleStickMA30Color: UIColor = Color(hex: 0xFFFF00)
                 
         /// 蜡烛图BOLL UP指标颜色
-        var candleStickBOLLUp: UIColor = Color(hex: 0x00FFFF)
+        var candleStickBOLLUpColor: UIColor = Color(hex: 0x00FFFF)
         
         /// 蜡烛图BOLL MB指标颜色
-        var candleStickBOLLMb: UIColor = Color(hex: 0x4498EA)
+        var candleStickBOLLMbColor: UIColor = Color(hex: 0x4498EA)
         
         /// 蜡烛图BOLL DN指标颜色
-        var candleStickBOLLDn: UIColor = Color(hex: 0xFFFF00)
+        var candleStickBOLLDnColor: UIColor = Color(hex: 0xFFFF00)
         
         /// 交易量MA5指标颜色
         var volumeMA5Color: UIColor = Color(hex: 0x4498EA)
@@ -130,14 +148,14 @@ extension XLKLine {
         /// 交易量EMA26指标颜色
         var volumeEMA26Color: UIColor = Color(hex: 0x00FFFF)
         
-        /// MACD指标颜色
-        var MACDColor: UIColor = Color(hex: 0x00FFFF)
+        /// 副视图MACD指标颜色
+        var accessoryMACDColor: UIColor = Color(hex: 0x00FFFF)
         
-        /// MACD DIF 指标颜色
-        var MACDDIFColor: UIColor = Color(hex: 0xC71585)
+        /// 副视图MACD DIF 指标颜色
+        var accessoryMACDDIFColor: UIColor = Color(hex: 0xC71585)
         
-        /// MACD DEA 指标颜色
-        var MACDDEAColor: UIColor = Color(hex: 0x1E90FF)
+        /// 副视图MACD DEA 指标颜色
+        var accessoryMACDDEAColor: UIColor = Color(hex: 0x1E90FF)
         
         /// KDJ K 指标颜色
         var KDJKColor: UIColor = Color(hex: 0x1E90FF)
@@ -164,21 +182,21 @@ extension XLKLine {
             case .MA where param == 30:         //  MA30
                 return candleStickMA30Color
             case .BOLL_UP:                      //  BOLL UP
-                return candleStickBOLLUp
+                return candleStickBOLLUpColor
             case .BOLL_MB:                      //  BOLL MB
-                return candleStickBOLLMb
+                return candleStickBOLLMbColor
             case .BOLL_DN:                      //  BOLL DN
-                return candleStickBOLLDn
+                return candleStickBOLLDnColor
             case .MA_VOLUME where param == 5:   //  Volume MA5
                 return volumeMA5Color
             case .MA_VOLUME where param == 10:  //  Volume MA10
                 return volumeMA10Color
             case .MACD:                         //  MACD
-                return MACDColor
+                return accessoryMACDColor
             case .DIF:                          //  MACD DIF
-                return MACDDIFColor
+                return accessoryMACDDIFColor
             case .DEA:                          //  MACD DEA
-                return MACDDEAColor
+                return accessoryMACDDEAColor
             case .KDJ_K:                        //  KDJ K
                 return KDJKColor
             case .KDJ_D:                        //  KDJ D
