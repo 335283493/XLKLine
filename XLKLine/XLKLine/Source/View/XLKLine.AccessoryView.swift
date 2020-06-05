@@ -32,13 +32,14 @@ extension XLKLine {
             super.draw(rect)
             
             drawAxisScaleLines()
+            drawIndicator()
         }
         
         public override func layoutSubviews() {
             super.layoutSubviews()
             
 //            backgroundColor = manager.config.candleStickBackgroundColor
-            backgroundColor = .green
+            backgroundColor = .white
         }
         
         // MARK: - Init
@@ -106,7 +107,18 @@ extension XLKLine.AccessoryView: XLKLineDrawVerticalAxisScaleLineProtocol {
     /// 绘制KDJ
     func drawKDJIndicator() {
         
-        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        guard let model = manager.displayAccessoryKDJ(bounds: bounds) else {
+            return
+        }
+        XLKLine.LineBrush.draw(context: context,
+                               model: model.K)
+        XLKLine.LineBrush.draw(context: context,
+                               model: model.D)
+        XLKLine.LineBrush.draw(context: context,
+                               model: model.J)
     }
     
 }

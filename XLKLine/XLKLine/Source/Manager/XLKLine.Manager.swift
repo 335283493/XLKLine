@@ -127,16 +127,31 @@ extension XLKLine {
         
         open func displayAccessoryMACD(bounds: CGRect) -> XLKLine.AccessoryMACD.Response? {
             
-            let type = config.candleStickIndicatorType
+            let type = config.accessoryIndicatorType
             let models = displayModels()
-            guard let limitValue = Manager.volumeLimitValue(models: models,
-                                                            indicatorType: type) else {
+            guard let limitValue = Manager.accessoryLimitValue(models: models,
+                                                               indicatorType: type) else {
                                                                 return nil
             }
             return XLKLine.AccessoryMACD.generate(models: models,
                                                   bounds: bounds,
                                                   limitValue: limitValue,
                                                   config: config)
+        }
+        
+        open func displayAccessoryKDJ(bounds: CGRect) -> XLKLine.AccessoryKDJ.Response? {
+            
+            let type = config.accessoryIndicatorType
+            let models = displayModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: models,
+                                                               indicatorType: type) else {
+                                                                return nil
+            }
+            
+            return XLKLine.AccessoryKDJ.generate(models: models,
+                                                 bounds: bounds,
+                                                 limitValue: limitValue,
+                                                 config: config)
         }
         
         /// 重置当前位置

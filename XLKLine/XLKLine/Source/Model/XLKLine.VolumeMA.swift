@@ -91,20 +91,21 @@ public extension XLKLine.VolumeMA {
     /// - Parameter limitValue: 边界值
     /// - Parameter config: 配置对象
     static func generate(models: [XLKLine.Model],
-                          bounds: CGRect,
-                          limitValue: XLKLine.LimitValue,
-                          config: XLKLine.Config) -> [XLKLine.VolumeMA] {
-         
-         guard models.count > 0 else {
-             
-             return []
-         }
+                         bounds: CGRect,
+                         limitValue: XLKLine.LimitValue,
+                         config: XLKLine.Config) -> [XLKLine.VolumeMA] {
+        
+        guard models.count > 0 else {
+            
+            return []
+        }
+
         let indicatorLineWidth = config.volumeIndicatorLineWidth
         let klineSpace = config.klineSpace
         let klineWidth = config.klineWidth
-        let drawMaxY = bounds.height
+        let paddingTop = config.volumeContentInset.top
+        let drawMaxY = bounds.height - paddingTop
         let unitValue = (limitValue.max - limitValue.min) / Double(drawMaxY)
-        
         var lines: [String: XLKLine.VolumeMA] = [:]
         let type = XLKLine.Model.IndicatorType.MA_VOLUME
         for day in config.volumeMADays {
@@ -117,17 +118,17 @@ public extension XLKLine.VolumeMA {
                                         lineWidth: indicatorLineWidth)
             lines[key] = item
         }
-         
-         for (index, model) in models.enumerated() {
-             
-             for (day, value) in model.indicator.MA_VOLUME ?? [:] {
-                 
-                 let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
-                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
-                 let point = CGPoint(x: x, y: y)
+
+        for (index, model) in models.enumerated() {
+
+            for (day, value) in model.indicator.MA_VOLUME ?? [:] {
+                
+                let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
+                let point = CGPoint(x: x, y: y)
                 lines[day]?.positions[index] = point
-             }
-         }
-         return Array(lines.values)
-     }
+            }
+        }
+        return Array(lines.values)
+    }
 }

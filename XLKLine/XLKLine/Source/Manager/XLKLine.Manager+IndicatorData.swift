@@ -43,18 +43,17 @@ extension XLKLine.Manager {
                                            S: config.accessoryMACDS,
                                            L: config.accessoryMACDL,
                                            M: config.accessoryMACDM)
-            
-            //            //  计算副视图指标
-            //            //  计算副视图MACD指标
-            //            XLKLine.Accessory.MACDModel.generateMACDs(model: &self[index],
-            //                                                      index: index,
-            //                                                      previous: previous)
-            //            //  计算副视图KDJ指标
-            //            XLKLine.Accessory.KDJModel.generateKDJs(model: &self[index],
-            //                                                    index: index,
-            //                                                    models: self)
-            
+            //  计算副视图KDJ
+            XLKLine.AccessoryKDJ.generate(models: models,
+                                          index: index,
+                                          N: config.accessoryKDJN,
+                                          M1: config.accessoryKDJM1,
+                                          M2: config.accessoryKDJM2)
             previous = models[index]
         }
+        
+        XLKLine.AccessoryMACD.removeInaccurateData(models: models,
+                                                   L: config.accessoryMACDL,
+                                                   M: config.accessoryMACDM)
     }
 }

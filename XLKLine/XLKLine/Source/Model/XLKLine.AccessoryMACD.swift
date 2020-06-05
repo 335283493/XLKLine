@@ -58,30 +58,31 @@ extension XLKLine.AccessoryMACD {
                          S: Int,
                          L: Int,
                          M: Int) {
-        
-        guard index < 0 || models.count <= index else {
+
+        if index < 0 || models.count <= index {
             return
         }
+
         let current: XLKLine.Model = models[index]
         let previous: XLKLine.Model? = index > 0 ? models[index - 1] : nil
-        
-        let S = generateEMA(day: S,
-                            model: current,
-                            index: index,
-                            previousEMA: previous?.indicator.EMA_S)
-        let L = generateEMA(day: L,
-                            model: current,
-                            index: index,
-                            previousEMA: previous?.indicator.EMA_L)
-        
-        current.indicator.DIF = generateDIF(S: S,
-                                            L: L)
+
+        let emaS = generateEMA(day: S,
+                               model: current,
+                               index: index,
+                               previousEMA: previous?.indicator.EMA_S)
+        let emaL = generateEMA(day: L,
+                               model: current,
+                               index: index,
+                               previousEMA: previous?.indicator.EMA_L)
+
+        current.indicator.DIF = generateDIF(S: emaS,
+                                            L: emaL)
         current.indicator.DEA = generateDEA(current: current,
                                             previous: previous,
                                             M: M)
         current.indicator.MACD = generateMACD(model: current)
-        current.indicator.EMA_S = S
-        current.indicator.EMA_L = L
+        current.indicator.EMA_S = emaS
+        current.indicator.EMA_L = emaL
     }
     
     /// 生成单条副视图EMA指标
@@ -94,15 +95,16 @@ extension XLKLine.AccessoryMACD {
                                     index: Int,
                                     previousEMA: Double?) -> Double? {
         
-        if day <= 0 || index < (day - 1) {
+        if index <= 0 {
             
-            return nil
+            return model.close
         }
         
         if let previousEMA = previousEMA {
-            return Double(day - 1) / Double(day + 1) * previousEMA + 2 / Double(day + 1) * model.close
+
+            return previousEMA * Double(day - 1) / Double(day + 1) + model.close * 2 / Double(day + 1)
         } else {
-            return 2 / Double(day + 1) * model.close
+            return model.close * 2 / Double(day + 1)
         }
     }
     
@@ -162,7 +164,7 @@ public extension XLKLine.AccessoryMACD {
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
                          config: XLKLine.Config) -> Response {
-        
+
         let klineWidth = config.klineWidth
         let klineSpace = config.klineSpace
         let increaseColor = config.increaseColor
@@ -182,6 +184,7 @@ public extension XLKLine.AccessoryMACD {
             var bottom = middleY
             
             if let macdValue = model.indicator.MACD {
+
                 let offsetValue = CGFloat(abs(macdValue) / unitValue)
                 top = macdValue >= 0 ? middleY - offsetValue : middleY
                 bottom = macdValue >= 0 ? middleY : middleY + offsetValue
@@ -222,5 +225,23 @@ public extension XLKLine.AccessoryMACD {
                                           lineColor: difColor,
                                           lineWidth: indicatorLineWidth)
         return (macd, dif, dea)
+    }
+}
+
+// MARK: - 删除不准确数据（数据开始时计算不准确）
+public extension XLKLine.AccessoryMACD {
+    
+    static func removeInaccurateData(models: [XLKLine.Model],
+                                     L: Int,
+                                     M: Int) {
+        
+        for index in 0 ..< L + M - 1 {
+            let model = models[index]
+            if index < L {
+                model.indicator.DIF = nil
+            }
+            model.indicator.MACD = nil
+            model.indicator.DEA = nil
+        }
     }
 }

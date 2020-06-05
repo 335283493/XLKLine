@@ -48,7 +48,7 @@ public extension XLKLine {
 public protocol XLKLineLineBrushProtocol {
     
     /// line坐标
-    var positions: XLKLine.Positions { get }
+    var positions: XLKLine.Positions { set get }
     
     /// 绘制线颜色
     var lineColor: UIColor { get }
@@ -56,6 +56,8 @@ public protocol XLKLineLineBrushProtocol {
     /// 绘制线宽度
     var lineWidth: CGFloat { get }
 }
+
+
 
 // MARK: - LineBrush模型
 public extension XLKLine.LineBrush {

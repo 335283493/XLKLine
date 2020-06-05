@@ -16,7 +16,7 @@ extension XLKLine {
         var candleStickIndicatorType: Model.IndicatorType = .MA
         
         /// 副视图指标类型
-        var accessoryIndicatorType: Model.IndicatorType = .MACD
+        var accessoryIndicatorType: Model.IndicatorType = .KDJ
         
         /// 背景颜色
         var backgroundColor: UIColor = Color(hex: 0x24262F)
@@ -43,7 +43,7 @@ extension XLKLine {
         var klineSpace: CGFloat = 1.0
         
         /// k线图主体宽度
-        var klineWidth: CGFloat = 8.0
+        var klineWidth: CGFloat = 10.0
         
         /// 上下影线宽度
         var klineShadowLineWidth: CGFloat = 1.0
@@ -117,6 +117,15 @@ extension XLKLine {
         
         /// 副视图 MACD M 参数
         var accessoryMACDM: Int = 9
+        
+        /// 副视图 KDJ N 参数 (天)
+        var accessoryKDJN: Int = 9
+        
+        /// 副视图 KDJ 参数
+        var accessoryKDJM1: Int = 3
+        
+        /// 副视图 KDJ 参数
+        var accessoryKDJM2: Int = 3
         
         /// 蜡烛图MA5指标颜色
         var candleStickMA5Color: UIColor = Color(hex: 0x4498EA)

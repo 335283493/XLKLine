@@ -30,7 +30,6 @@ extension XLKLine {
             let drawMaxY = bounds.height - paddingTop
             let unitValue = (limitValue.max - limitValue.min) / Double(drawMaxY)
             var result: [XLKLineLineBrushProtocol] = []
-            
             for (index, model) in models.enumerated() {
                 
                 let x = CGFloat(index) * (lineWidth + lineSpace) + lineWidth * 0.5 + lineSpace
