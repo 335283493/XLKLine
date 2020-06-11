@@ -42,7 +42,6 @@ extension XLKLine.AccessoryKDJ {
             return
         }
         let previous = index > 0 ? models[index - 1] : nil
-
         let RSV = generateRSV(models: models, index: index, N: N)
         let K = generateK(RSV: RSV, previous: previous, M1: M1)
         let D = generateD(K: K, previous: previous, M2: M2)

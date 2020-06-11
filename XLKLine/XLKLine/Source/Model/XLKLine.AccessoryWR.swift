@@ -42,7 +42,6 @@ public extension XLKLine.AccessoryWR {
                 
                 let key = "\(XLKLine.Model.IndicatorType.WR.rawValue)\(day)"
                 wr[key] = value
-                print("\(key) = \(value)")
             }
         }
         model.indicator.WR = wr

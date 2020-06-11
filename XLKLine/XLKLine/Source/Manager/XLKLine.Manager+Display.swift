@@ -147,19 +147,34 @@ public extension XLKLine.Manager {
                               currentLocation: Int,
                               config: XLKLine.Config) -> [XLKLine.Model] {
         
-        guard let displayRange = displayRange(displayWidth: displayWidth,
-                                              modelsCount: models.count,
-                                              currentLocation: currentLocation,
-                                              config: config) else {
-                                                
-                                                return []
+        //        guard let displayRange = displayRange(displayWidth: displayWidth,
+        //                                              modelsCount: models.count,
+        //                                              currentLocation: currentLocation,
+        //                                              config: config) else {
+        //
+        //                                                return []
+        //        }
+        
+        if models.count == 0 {
+            
+            return []
         }
+        
+        let displayCount = XLKLine.Manager.displayCount(displayWidth: displayWidth,
+                                                        modelsCount: models.count,
+                                                        currentLocation: currentLocation,
+                                                        config: config)
+        let displayRange = NSRange(location: currentLocation,
+                                   length: displayCount)
+        
+        
         guard displayRange.location + displayRange.length <= models.count &&
             displayRange.location >= 0 else {
                 
                 return []
         }
         guard let range = Range(displayRange) else {
+            
             return []
         }
         return Array(models[range])
