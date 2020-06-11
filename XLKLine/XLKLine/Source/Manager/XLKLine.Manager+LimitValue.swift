@@ -83,7 +83,7 @@ extension XLKLine.Manager {
         var minValue = models[0].volume
         var maxValue = models[0].volume
         for model in models {
-
+            
             if model.volume < minValue {
                 minValue = model.volume
             }
@@ -103,7 +103,7 @@ extension XLKLine.Manager {
                 break
             }
         }
-
+        
         return (minValue, maxValue)
     }
     
@@ -121,10 +121,10 @@ extension XLKLine.Manager {
         
         var minValue = 0.0
         var maxValue = 0.0
-        
-        switch indicatorType {
-        case .MACD:
-            for model in models {
+        for model in models {
+            switch indicatorType {
+            case .MACD:
+                
                 if let value = model.indicator.DIF {
                     minValue = value < minValue ? value : minValue
                     maxValue = value > maxValue ? value : maxValue
@@ -137,11 +137,10 @@ extension XLKLine.Manager {
                     minValue = value < minValue ? value : minValue
                     maxValue = value > maxValue ? value : maxValue
                 }
-            }
-            
-        case .KDJ:
-            
-            for model in models {
+                
+                
+            case .KDJ:
+                
                 
                 if let value = model.indicator.KDJ_K {
                     minValue = value < minValue ? value : minValue
@@ -156,10 +155,24 @@ extension XLKLine.Manager {
                     minValue = value < minValue ? value : minValue
                     maxValue = value > maxValue ? value : maxValue
                 }
+                
+            case .RSI:
+                if let RSIs = model.indicator.RSI {
+                    for (_, value) in RSIs {
+                        minValue = value < minValue ? value : minValue
+                        maxValue = value > maxValue ? value : maxValue
+                    }
+                }
+            case .WR:
+                if let WRs = model.indicator.WR {
+                    for (_, value) in WRs {
+                        minValue = value < minValue ? value : minValue
+                        maxValue = value > maxValue ? value : maxValue
+                    }
+                }
+            default:
+                break
             }
-            
-        default:
-            break
         }
         return (minValue, maxValue)
     }

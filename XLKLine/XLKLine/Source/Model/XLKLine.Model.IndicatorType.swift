@@ -27,8 +27,7 @@ extension XLKLine.Model {
         case BOLL_UP
         case BOLL_DN
         case RSI
-        case VOL
-        case DMI
+        case WR
     }
 }
 

@@ -154,6 +154,34 @@ extension XLKLine {
                                                  config: config)
         }
         
+        open func displayAccessoryRSI(bounds: CGRect) -> [XLKLine.AccessoryRSI] {
+            
+            let type = config.accessoryIndicatorType
+            let models = displayModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: models,
+                                                               indicatorType: type) else {
+                                                                return []
+            }
+            return XLKLine.AccessoryRSI.generate(models: models,
+                                                 bounds: bounds,
+                                                 limitValue: limitValue,
+                                                 config: config)
+        }
+        
+        open func displayAccessoryWR(bounds: CGRect) -> [XLKLine.AccessoryWR] {
+            
+            let type = config.accessoryIndicatorType
+            let models = displayModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: models,
+                                                               indicatorType: type) else {
+                                                                return []
+            }
+            return XLKLine.AccessoryWR.generate(models: models,
+                                                 bounds: bounds,
+                                                 limitValue: limitValue,
+                                                 config: config)
+        }
+        
         /// 重置当前位置
         open func reloadCurrentLocation() {
             

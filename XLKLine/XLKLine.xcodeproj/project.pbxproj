@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		718C4D944D24DD1774A5ABBD /* Pods_XLKLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */; };
 		99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */; };
+		99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */; };
+		996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */; };
 		9981DFAB247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */; };
 		99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */; };
 		99CEAA46247FA73400E689FB /* XLKLine.VolumeMA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */; };
@@ -78,6 +80,8 @@
 		80D372031E53020B44301B9F /* Pods-XLKLineExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLineExample.debug.xcconfig"; path = "Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample.debug.xcconfig"; sourceTree = "<group>"; };
 		952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLine.debug.xcconfig"; path = "Target Support Files/Pods-XLKLine/Pods-XLKLine.debug.xcconfig"; sourceTree = "<group>"; };
 		99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryKDJ.swift; sourceTree = "<group>"; };
+		99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryRSI.swift; sourceTree = "<group>"; };
+		996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryWR.swift; sourceTree = "<group>"; };
 		9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickBOLL.swift; sourceTree = "<group>"; };
 		99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+Display.swift"; sourceTree = "<group>"; };
 		99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.VolumeMA.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */,
 				99CEAA492480E7ED00E689FB /* XLKLine.AccessoryMACD.swift */,
 				99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */,
+				99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */,
+				996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */,
 				99D5FBD124655D7800A8C716 /* XLKLine.CandleStickBarBrushModel.swift */,
 			);
 			path = Model;
@@ -477,8 +483,10 @@
 				99D5FBA62463E03700A8C716 /* XLKLine.VolumeView.swift in Sources */,
 				99D5FBD0246558AD00A8C716 /* XLKLine.CandleStickBarBrush.swift in Sources */,
 				99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */,
+				99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */,
 				99D5FBA82463E03700A8C716 /* XLKLine.AccessoryView.swift in Sources */,
 				99D5FBD224655D7800A8C716 /* XLKLine.CandleStickBarBrushModel.swift in Sources */,
+				996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */,
 				99D5FBDB2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift in Sources */,
 				99D5FBA02463E03700A8C716 /* Color.swift in Sources */,
 				99D5FBA22463E03700A8C716 /* XLKLine.ViewStyle.swift in Sources */,

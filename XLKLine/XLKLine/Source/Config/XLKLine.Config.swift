@@ -43,7 +43,7 @@ extension XLKLine {
         var klineSpace: CGFloat = 1.0
         
         /// k线图主体宽度
-        var klineWidth: CGFloat = 10.0
+        var klineWidth: CGFloat = 12.5
         
         /// 上下影线宽度
         var klineShadowLineWidth: CGFloat = 1.0
@@ -127,6 +127,12 @@ extension XLKLine {
         /// 副视图 KDJ 参数
         var accessoryKDJM2: Int = 3
         
+        /// 副视图 RSI 参数
+        var accessoryRSI: [Int] = [6, 12, 24]
+        
+        /// 副视图 WR 参数
+        var accessoryWR: [Int] = [6, 10]
+        
         /// 蜡烛图MA5指标颜色
         var candleStickMA5Color: UIColor = Color(hex: 0x4498EA)
         
@@ -167,13 +173,40 @@ extension XLKLine {
         var accessoryMACDDEAColor: UIColor = Color(hex: 0x1E90FF)
         
         /// KDJ K 指标颜色
-        var KDJKColor: UIColor = Color(hex: 0x1E90FF)
+        var accessoryKDJKColor: UIColor = Color(hex: 0x1E90FF)
         
         /// KDJ D 指标颜色
-        var KDJDColor: UIColor = Color(hex: 0xFFA500)
+        var accessoryKDJDColor: UIColor = Color(hex: 0xFFA500)
         
         /// KDJ J 指标颜色
-        var KDJJColor: UIColor = Color(hex: 0xFFD700)
+        var accessoryKDJJColor: UIColor = Color(hex: 0xFFD700)
+        
+        /// 副视图 RSI6 指标颜色
+        var accessoryRSI6Color: UIColor = Color(hex: 0x1E90FF)
+        
+        /// 副视图 RSI12 指标颜色
+        var accessoryRSI12Color: UIColor = Color(hex: 0xFFA500)
+        
+        /// 副视图 RSI24 指标颜色
+        var accessoryRSI24Color: UIColor = Color(hex: 0xFFD700)
+        
+        /// 副视图 WR6 指标颜色
+        var accessoryWR6Color: UIColor = Color(hex: 0x1E90FF)
+        
+        /// 副视图 WR12 指标颜色
+        var accessoryWR12Color: UIColor = Color(hex: 0xFFA500)
+        
+        /// 副视图 WR24 指标颜色
+        var accessoryWR24Color: UIColor = Color(hex: 0xFFD700)
+        
+        /// 指标0颜色
+        var indicator0Color: UIColor = Color(hex: 0xFFA500)
+        
+        /// 指标1颜色
+        var indicator1Color: UIColor = Color(hex: 0x1E90FF)
+        
+        /// 指标2颜色
+        var indicator2Color: UIColor = Color(hex: 0xFFD700)
         
         /// 指标颜色
         /// - Parameters:
@@ -181,37 +214,41 @@ extension XLKLine {
         ///   - param: 指标参数
         /// - Returns: 颜色
         func indicatorColor(type: XLKLine.Model.IndicatorType,
-                            param: Int? = nil) -> UIColor {
-            
+                            index: Int? = nil) -> UIColor {
+
+            if let index = index {
+                switch index {
+                case 0:
+                    return indicator0Color
+                case 1:
+                    return indicator1Color
+                case 2:
+                    return indicator2Color
+                default:
+                    return Color(hex: 0xFFFFFF)
+                }
+            }
+
             switch type {
-            case .MA where param == 5:          //  MA5
-                return candleStickMA5Color
-            case .MA where param == 10:         //  MA10
-                return candleStickMA10Color
-            case .MA where param == 30:         //  MA30
-                return candleStickMA30Color
-            case .BOLL_UP:                      //  BOLL UP
+            
+            case .BOLL_UP:
                 return candleStickBOLLUpColor
-            case .BOLL_MB:                      //  BOLL MB
+            case .BOLL_MB:
                 return candleStickBOLLMbColor
-            case .BOLL_DN:                      //  BOLL DN
+            case .BOLL_DN:
                 return candleStickBOLLDnColor
-            case .MA_VOLUME where param == 5:   //  Volume MA5
-                return volumeMA5Color
-            case .MA_VOLUME where param == 10:  //  Volume MA10
-                return volumeMA10Color
-            case .MACD:                         //  MACD
+            case .MACD:
                 return accessoryMACDColor
-            case .DIF:                          //  MACD DIF
+            case .DIF:
                 return accessoryMACDDIFColor
-            case .DEA:                          //  MACD DEA
+            case .DEA:
                 return accessoryMACDDEAColor
-            case .KDJ_K:                        //  KDJ K
-                return KDJKColor
-            case .KDJ_D:                        //  KDJ D
-                return KDJDColor
-            case .KDJ_J:                        //  KDJ J
-                return KDJJColor
+            case .KDJ_K:
+                return accessoryKDJKColor
+            case .KDJ_D:
+                return accessoryKDJDColor
+            case .KDJ_J:
+                return accessoryKDJJColor
             default:
                 return Color(hex: 0xFFFFFF)
             }

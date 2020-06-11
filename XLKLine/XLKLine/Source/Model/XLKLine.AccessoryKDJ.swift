@@ -42,9 +42,10 @@ extension XLKLine.AccessoryKDJ {
             return
         }
         let previous = index > 0 ? models[index - 1] : nil
+
         let RSV = generateRSV(models: models, index: index, N: N)
-        let K = generateK(RSV: RSV, previous: previous)
-        let D = generateD(K: K, previous: previous)
+        let K = generateK(RSV: RSV, previous: previous, M1: M1)
+        let D = generateD(K: K, previous: previous, M2: M2)
         let J = generateJ(K: K, D: D)
         let model = models[index]
         model.indicator.KDJ_K = K
@@ -89,31 +90,40 @@ extension XLKLine.AccessoryKDJ {
     static func generateRSV(models: [XLKLine.Model],
                            index: Int,
                            N: Int) -> Double {
+        
         let LN = generateLN(models: models, index: index, N: N)
         let HN = generateHN(models: models, index: index, N: N)
         let CN = models[index].close
-        let RSV = (CN - LN) / (HN - LN) * 100
-        return max(1, min(100, RSV))
+        return (CN - LN) / (HN - LN) * 100
     }
     
     static func generateK(RSV: Double,
-                          previous: XLKLine.Model?) -> Double {
-        
+                          previous: XLKLine.Model?,
+                          M1: Int) -> Double {
+
         let k = previous?.indicator.KDJ_K ?? 50
-        return 2 / 3 * k + 1 / 3 * RSV
+        let M1 = Double(M1)
+        return sma(previous: k, X: RSV, N: M1, M: 1)
     }
     
     static func generateD(K: Double,
-                          previous: XLKLine.Model?) -> Double {
-        
+                          previous: XLKLine.Model?,
+                          M2: Int) -> Double {
+
         let d = previous?.indicator.KDJ_D ?? 50
-        return 2 / 3 * d + 1 / 3 * K
+        let M2 = Double(M2)
+        return sma(previous: d, X: K, N: M2, M: 1)
     }
     
     static func generateJ(K: Double,
                           D: Double) -> Double {
         
-        return 3 * D - 2 * K
+        return 3 * K - 2 * D
+    }
+    
+    static func sma(previous: Double, X: Double, N: Double, M: Double) -> Double {
+        
+        return (M * X + (N - M) * previous) / N
     }
 }
 
@@ -161,9 +171,9 @@ public extension XLKLine.AccessoryKDJ {
                 jPoints.append(point)
             }
         }
-        let kColor = config.KDJKColor
-        let dColor = config.KDJDColor
-        let jColor = config.KDJJColor
+        let kColor = config.accessoryKDJKColor
+        let dColor = config.accessoryKDJDColor
+        let jColor = config.accessoryKDJJColor
         let indicatorLineWidth = config.accessoryIndicatorLineWidth
         
         let k = XLKLine.AccessoryKDJ(positions: kPoints,

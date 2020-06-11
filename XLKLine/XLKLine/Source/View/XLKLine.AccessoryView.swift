@@ -80,6 +80,10 @@ extension XLKLine.AccessoryView: XLKLineDrawVerticalAxisScaleLineProtocol {
             drawMACDIndicator()
         case .KDJ:
             drawKDJIndicator()
+        case .RSI:
+            drawRSIIndicator()
+        case .WR:
+            drawWRIndicator()
         default:
             break
         }
@@ -121,4 +125,27 @@ extension XLKLine.AccessoryView: XLKLineDrawVerticalAxisScaleLineProtocol {
                                model: model.J)
     }
     
+    func drawRSIIndicator() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let indicatorModels = manager.displayAccessoryRSI(bounds: bounds)
+        for model in indicatorModels {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
+    }
+    
+    func drawWRIndicator() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let indicatorModels = manager.displayAccessoryWR(bounds: bounds)
+        for model in indicatorModels {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
+    }
 }

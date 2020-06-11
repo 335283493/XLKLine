@@ -108,9 +108,10 @@ public extension XLKLine.VolumeMA {
         let unitValue = (limitValue.max - limitValue.min) / Double(drawMaxY)
         var lines: [String: XLKLine.VolumeMA] = [:]
         let type = XLKLine.Model.IndicatorType.MA_VOLUME
-        for day in config.volumeMADays {
+        for (index, day) in config.volumeMADays.enumerated() {
             
-            let color = config.indicatorColor(type: type, param: day)
+            let color = config.indicatorColor(type: type,
+                                              index: index)
             let positions = Array<CGPoint?>(repeating: nil, count: models.count)
             let key = "\(type.rawValue)\(day)"
             let item = XLKLine.VolumeMA(positions: positions,

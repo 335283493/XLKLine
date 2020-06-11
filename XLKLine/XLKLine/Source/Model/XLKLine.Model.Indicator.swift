@@ -52,8 +52,8 @@ public extension XLKLine.Model {
         var minPriceOfNineClock: Double?
         // 九个交易日最高价
         var maxPriceOfNineClock: Double?
-        // RSV(9) =（今日收盘价－9日内最低价）/（9日内最高价－9日内最低价）* 100
-        var RSV9: Double?
+        // RSV(N) =（今日收盘价－N日内最低价）/（N日内最高价－N日内最低价）* 100
+        var KDJ_RSV: Double?
         // K(3) =（当日RSV值+2*前一日K值）/ 3
         var KDJ_K: Double?
         // D(3) =（当日K值 + 2*前一日D值）/ 3
@@ -68,6 +68,14 @@ public extension XLKLine.Model {
         var BOLL_UP: Double?
         // 下轨线
         var BOLL_DN: Double?
+        // MARK: - RSI
+        var RSI: [String: Double]?
+        
+        var RSIMaxEMA: [String: Double] = [:]
+        
+        var RSIAbsEMA: [String: Double] = [:]
+        // MARK: - WR
+        var WR: [String: Double]?
     }
 }
 

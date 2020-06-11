@@ -1,8 +1,8 @@
 //
-//  XLKLine.CandleStickMAModel.swift
+//  XLKLine.AccessoryWR.swift
 //  XLKLine
 //
-//  Created by xx11dragon on 2020/5/9.
+//  Created by xx11dragon on 2020/6/10.
 //  Copyright © 2020 xx11dragon. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import UIKit
 
 extension XLKLine {
     
-    /// 蜡烛图MA指标
-    public struct CandleStickMA: XLKLineLineBrushProtocol {
+    /// 蜡烛图WR指标
+    public struct AccessoryWR: XLKLineLineBrushProtocol {
         
         public var positions: XLKLine.Positions
         
@@ -22,7 +22,7 @@ extension XLKLine {
 }
 
 // MARK: - 生成数据
-public extension XLKLine.CandleStickMA {
+public extension XLKLine.AccessoryWR {
     
     /// 计算蜡烛线MA指标
     /// - Parameter model: 当前数据
@@ -34,47 +34,47 @@ public extension XLKLine.CandleStickMA {
                          days: [Int]) {
         
         let model = models[index]
-        var ma: [String: Double] = [:]
+        var wr: [String: Double] = [:]
         for day in days {
-            if let value = generateMA(day: day,
-                                      model: model,
+            if let value = generateWR(day: day,
                                       index: index,
                                       models: models) {
                 
-                let key = "\(XLKLine.Model.IndicatorType.MA.rawValue)\(day)"
-                ma[key] = value
+                let key = "\(XLKLine.Model.IndicatorType.WR.rawValue)\(day)"
+                wr[key] = value
+                print("\(key) = \(value)")
             }
         }
-        model.indicator.MA = ma
+        model.indicator.WR = wr
     }
     
-    /// 计算单条蜡烛线MA指标
+    /// 计算单条蜡烛线WR指标
     /// - Parameter day: 指标参数
     /// - Parameter model: 当前数据
     /// - Parameter index: 当前数据索引
     /// - Parameter models: 当前数据数组
-    private static func generateMA(day: Int,
-                                   model: XLKLine.Model,
+    private static func generateWR(day: Int,
                                    index: Int,
                                    models: [XLKLine.Model]) -> Double? {
         
-        if day <= 0 || index < day - 1 {
+        if day <= 0 || models.isEmpty || index < day - 1 {
             
             return nil
         }
-        
-        guard let modelSum = model.indicator.sumClose else {
-            
-            return nil
+        let data = Array(models[index - day + 1 ... index])
+        var max: Double = data[0].high
+        var min: Double = data[0].low
+        for item in data {
+            max = Swift.max(item.high, max)
+            min = Swift.min(item.low, min)
         }
-        
-        let beforeSum: Double = index > day - 1 ? models[index - day].indicator.sumClose ?? 0 : 0
-        return (modelSum - beforeSum) / Double(day)
+        let model = models[index]
+        return max > min ? 100.0 * (max - model.close) / (max - min) : 100
     }
 }
 
 // MARK: - 生成绘制数据
-public extension XLKLine.CandleStickMA {
+public extension XLKLine.AccessoryWR {
     
     /// 生成绘制数据
     /// - Parameter models: 数据
@@ -84,7 +84,7 @@ public extension XLKLine.CandleStickMA {
     static func generate(models: [XLKLine.Model],
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
-                         config: XLKLine.Config) -> [XLKLine.CandleStickMA] {
+                         config: XLKLine.Config) -> [XLKLine.AccessoryWR] {
         
         guard models.count > 0 else {
             
@@ -97,23 +97,22 @@ public extension XLKLine.CandleStickMA {
         let drawMaxY = bounds.height - paddingTop
         let unitValue = (limitValue.max - limitValue.min) / Double(drawMaxY)
         
-        var lines: [String: XLKLine.CandleStickMA] = [:]
-        for (index, day) in config.candleStickMADays.enumerated() {
+        var lines: [String: XLKLine.AccessoryWR] = [:]
+        for (index, day) in config.accessoryWR.enumerated() {
             
-            let color = config.indicatorColor(type: .MA,
+            let color = config.indicatorColor(type: .WR,
                                               index: index)
             let positions = Array<CGPoint?>(repeating: nil, count: models.count)
-            let key = "\(XLKLine.Model.IndicatorType.MA.rawValue)\(day)"
-            
-            let item = XLKLine.CandleStickMA(positions: positions,
-                                             lineColor: color,
-                                             lineWidth: indicatorLineWidth)
+            let key = "\(XLKLine.Model.IndicatorType.WR.rawValue)\(day)"
+            let item = XLKLine.AccessoryWR(positions: positions,
+                                           lineColor: color,
+                                           lineWidth: indicatorLineWidth)
             lines[key] = item
         }
         
         for (index, model) in models.enumerated() {
             
-            for (day, value) in model.indicator.MA ?? [:] {
+            for (day, value) in model.indicator.WR ?? [:] {
                 
                 let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop

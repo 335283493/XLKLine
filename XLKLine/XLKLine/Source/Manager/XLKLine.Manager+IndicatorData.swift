@@ -37,18 +37,26 @@ extension XLKLine.Manager {
             XLKLine.VolumeMA.generate(models: models,
                                       index: index,
                                       days: config.volumeMADays)
-            //  计算副视图MACD
+            //  计算副视图MACD指标
             XLKLine.AccessoryMACD.generate(models: models,
                                            index: index,
                                            S: config.accessoryMACDS,
                                            L: config.accessoryMACDL,
                                            M: config.accessoryMACDM)
-            //  计算副视图KDJ
+            //  计算副视图KDJ指标
             XLKLine.AccessoryKDJ.generate(models: models,
                                           index: index,
                                           N: config.accessoryKDJN,
                                           M1: config.accessoryKDJM1,
                                           M2: config.accessoryKDJM2)
+            //  计算副视图RSI指标
+            XLKLine.AccessoryRSI.generate(models: models,
+                                          index: index,
+                                          days: config.accessoryRSI)
+            //  计算副视图WR指标
+            XLKLine.AccessoryWR.generate(models: models,
+                                         index: index,
+                                         days: config.accessoryWR)
             previous = models[index]
         }
         
