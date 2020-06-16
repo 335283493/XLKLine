@@ -27,14 +27,15 @@ extension XLKLine {
             let increaseColor = config.increaseColor
             let decreaseColor = config.decreaseColor
             let paddingTop = config.volumeContentInset.top
-            let drawMaxY = bounds.height - paddingTop
+            let baseHeight = bounds.height / 5
+            let drawMaxY = bounds.height - paddingTop - baseHeight
             let unitValue = (limitValue.max - limitValue.min) / Double(drawMaxY)
             var result: [XLKLineLineBrushProtocol] = []
             for (index, model) in models.enumerated() {
                 
                 let x = CGFloat(index) * (lineWidth + lineSpace) + lineWidth * 0.5 + lineSpace
                 let top = abs(drawMaxY - CGFloat((model.volume - limitValue.min) / unitValue)) + paddingTop
-                let bottom = drawMaxY + paddingTop
+                let bottom = drawMaxY + paddingTop + baseHeight
                 let lineColor = model.open <= model.close ? increaseColor : decreaseColor
                 let startPoint = CGPoint(x: x,
                                          y: top)

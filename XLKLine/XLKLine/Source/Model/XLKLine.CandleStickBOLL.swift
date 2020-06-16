@@ -150,6 +150,8 @@ public extension XLKLine.CandleStickBOLL {
     /// - Parameter limitValue: 边界值
     /// - Parameter config: 配置对象
     static func generate(models: [XLKLine.Model],
+                         leadingPreloadModels: [XLKLine.Model],
+                         trailingPreloadModels: [XLKLine.Model],
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
                          config: XLKLine.Config) -> [XLKLine.CandleStickBOLL] {
@@ -169,19 +171,22 @@ public extension XLKLine.CandleStickBOLL {
             
             let color = config.indicatorColor(type: line)
             let key = line.rawValue
-            let positions = Array<CGPoint?>(repeating: nil, count: models.count)
+            let count = models.count + leadingPreloadModels.count + trailingPreloadModels.count
+            let positions = Array<CGPoint?>(repeating: nil,
+                                            count: count)
             let item = XLKLine.CandleStickBOLL(positions: positions,
                                                lineColor: color,
                                                lineWidth: indicatorLineWidth)
             lines[key] = item
         }
         
-        for (index, model) in models.enumerated() {
+        for (index, model) in leadingPreloadModels.enumerated() {
+            
+            let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
             
             if let value = model.indicator.BOLL_DN {
                 
                 let key = XLKLine.Model.IndicatorType.BOLL_DN.rawValue
-                let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
                 let point = CGPoint(x: x, y: y)
                 lines[key]?.positions[index] = point
@@ -190,7 +195,6 @@ public extension XLKLine.CandleStickBOLL {
             if let value = model.indicator.BOLL_MB {
                 
                 let key = XLKLine.Model.IndicatorType.BOLL_MB.rawValue
-                let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
                 let point = CGPoint(x: x, y: y)
                 lines[key]?.positions[index] = point
@@ -199,12 +203,40 @@ public extension XLKLine.CandleStickBOLL {
             if let value = model.indicator.BOLL_UP {
                 
                 let key = XLKLine.Model.IndicatorType.BOLL_UP.rawValue
-                let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
                 let point = CGPoint(x: x, y: y)
                 lines[key]?.positions[index] = point
             }
-
+        }
+        
+ 
+        for (displayIndex, model) in (models + trailingPreloadModels).enumerated() {
+            
+            let modelIndex = leadingPreloadModels.count + displayIndex
+            let x = CGFloat(displayIndex) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+            if let value = model.indicator.BOLL_DN {
+                
+                let key = XLKLine.Model.IndicatorType.BOLL_DN.rawValue
+                let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
+                let point = CGPoint(x: x, y: y)
+                lines[key]?.positions[modelIndex] = point
+            }
+            
+            if let value = model.indicator.BOLL_MB {
+                
+                let key = XLKLine.Model.IndicatorType.BOLL_MB.rawValue
+                let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
+                let point = CGPoint(x: x, y: y)
+                lines[key]?.positions[modelIndex] = point
+            }
+            
+            if let value = model.indicator.BOLL_UP {
+                
+                let key = XLKLine.Model.IndicatorType.BOLL_UP.rawValue
+                let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue))
+                let point = CGPoint(x: x, y: y)
+                lines[key]?.positions[modelIndex] = point
+            }
         }
         return Array(lines.values)
     }

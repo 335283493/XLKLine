@@ -81,6 +81,8 @@ public extension XLKLine.AccessoryWR {
     /// - Parameter limitValue: 边界值
     /// - Parameter config: 配置对象
     static func generate(models: [XLKLine.Model],
+                         leadingPreloadModels: [XLKLine.Model],
+                         trailingPreloadModels: [XLKLine.Model],
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
                          config: XLKLine.Config) -> [XLKLine.AccessoryWR] {
@@ -101,7 +103,9 @@ public extension XLKLine.AccessoryWR {
             
             let color = config.indicatorColor(type: .WR,
                                               index: index)
-            let positions = Array<CGPoint?>(repeating: nil, count: models.count)
+            let count = models.count + leadingPreloadModels.count + trailingPreloadModels.count
+            let positions = Array<CGPoint?>(repeating: nil,
+                                            count: count)
             let key = "\(XLKLine.Model.IndicatorType.WR.rawValue)\(day)"
             let item = XLKLine.AccessoryWR(positions: positions,
                                            lineColor: color,
@@ -109,16 +113,28 @@ public extension XLKLine.AccessoryWR {
             lines[key] = item
         }
         
-        for (index, model) in models.enumerated() {
+        for (index, model) in leadingPreloadModels.enumerated() {
             
             for (day, value) in model.indicator.WR ?? [:] {
                 
-                let x = index == 0 ? 0 : CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
                 let point = CGPoint(x: x, y: y)
                 lines[day]?.positions[index] = point
             }
         }
+        
+        for (displayIndex, model) in (models + trailingPreloadModels).enumerated() {
+            let modelIndex = leadingPreloadModels.count + displayIndex
+            for (day, value) in model.indicator.WR ?? [:] {
+                
+                let x = CGFloat(displayIndex) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
+                let point = CGPoint(x: x, y: y)
+                lines[day]?.positions[modelIndex] = point
+            }
+        }
+        
         return Array(lines.values)
     }
 }

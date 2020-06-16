@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		718C4D944D24DD1774A5ABBD /* Pods_XLKLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */; };
+		9906A06C24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A06B24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift */; };
+		9906A06E24934ED6002E3F51 /* XLKLine.Manager+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A06D24934ED6002E3F51 /* XLKLine.Manager+Display.swift */; };
 		99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */; };
 		99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */; };
 		996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */; };
 		9981DFAB247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */; };
-		99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */; };
+		99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift */; };
 		99CEAA46247FA73400E689FB /* XLKLine.VolumeMA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */; };
 		99CEAA48247FB2FC00E689FB /* XLKLine.Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */; };
 		99CEAA4A2480E7ED00E689FB /* XLKLine.AccessoryMACD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CEAA492480E7ED00E689FB /* XLKLine.AccessoryMACD.swift */; };
@@ -79,11 +81,13 @@
 		6BFDECB5A505F98C7CD3E3A4 /* Pods-XLKLineExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLineExample.release.xcconfig"; path = "Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample.release.xcconfig"; sourceTree = "<group>"; };
 		80D372031E53020B44301B9F /* Pods-XLKLineExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLineExample.debug.xcconfig"; path = "Target Support Files/Pods-XLKLineExample/Pods-XLKLineExample.debug.xcconfig"; sourceTree = "<group>"; };
 		952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLine.debug.xcconfig"; path = "Target Support Files/Pods-XLKLine/Pods-XLKLine.debug.xcconfig"; sourceTree = "<group>"; };
+		9906A06B24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.Manager.DisplayIndicator.swift; sourceTree = "<group>"; };
+		9906A06D24934ED6002E3F51 /* XLKLine.Manager+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+Display.swift"; sourceTree = "<group>"; };
 		99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryKDJ.swift; sourceTree = "<group>"; };
 		99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryRSI.swift; sourceTree = "<group>"; };
 		996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryWR.swift; sourceTree = "<group>"; };
 		9981DFAA247E1385002E48F4 /* XLKLine.CandleStickBOLL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickBOLL.swift; sourceTree = "<group>"; };
-		99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+Display.swift"; sourceTree = "<group>"; };
+		99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+DisplayBar.swift"; sourceTree = "<group>"; };
 		99CEAA45247FA73400E689FB /* XLKLine.VolumeMA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.VolumeMA.swift; sourceTree = "<group>"; };
 		99CEAA47247FB2FC00E689FB /* XLKLine.Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.Volume.swift; sourceTree = "<group>"; };
 		99CEAA492480E7ED00E689FB /* XLKLine.AccessoryMACD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryMACD.swift; sourceTree = "<group>"; };
@@ -222,7 +226,9 @@
 				99D5FB922463E03700A8C716 /* XLKLine.Manager.swift */,
 				99D5FBD82469460300A8C716 /* XLKLine.Manager+LimitValue.swift */,
 				99D5FBDA2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift */,
-				99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift */,
+				9906A06D24934ED6002E3F51 /* XLKLine.Manager+Display.swift */,
+				99B05CDA2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift */,
+				9906A06B24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 			files = (
 				99D5FB9D2463E03700A8C716 /* XLKLine.Config.swift in Sources */,
 				99D5FBA62463E03700A8C716 /* XLKLine.VolumeView.swift in Sources */,
+				9906A06E24934ED6002E3F51 /* XLKLine.Manager+Display.swift in Sources */,
 				99D5FBD0246558AD00A8C716 /* XLKLine.CandleStickBarBrush.swift in Sources */,
 				99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */,
 				99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */,
@@ -499,6 +506,7 @@
 				99D5FB9E2463E03700A8C716 /* XLKLine.Config.Theme.swift in Sources */,
 				99CEAA48247FB2FC00E689FB /* XLKLine.Volume.swift in Sources */,
 				99D5FBD92469460300A8C716 /* XLKLine.Manager+LimitValue.swift in Sources */,
+				9906A06C24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift in Sources */,
 				99D5FBA72463E03700A8C716 /* XLKLine.DateView.swift in Sources */,
 				99D5FBA92463E03700A8C716 /* XLKLine.CandleStickView.swift in Sources */,
 				99D5FBA42463E03700A8C716 /* XLKLine.Model.IndicatorType.swift in Sources */,
@@ -507,7 +515,7 @@
 				99D5FBA52463E03700A8C716 /* XLKLine.Model.Indicator.swift in Sources */,
 				99D5FBCC2463F60600A8C716 /* XLKLineDrawVerticalAxisScaleLineProtocol.swift in Sources */,
 				99CEAA4A2480E7ED00E689FB /* XLKLine.AccessoryMACD.swift in Sources */,
-				99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+Display.swift in Sources */,
+				99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

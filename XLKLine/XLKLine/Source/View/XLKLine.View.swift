@@ -46,7 +46,7 @@ extension XLKLine {
         
         /// 日期图
         private lazy var dateView: XLKLine.DateView = {
-            var view = XLKLine.DateView()
+            var view = XLKLine.DateView(manager: manager)
             addSubview(view)
             return view
         }()
@@ -91,19 +91,31 @@ extension XLKLine {
                 let y: CGFloat = previous == nil ? 0 : previous!.frame.maxY
                 switch style {
                 case .candleStick:
-                    candleStickView.frame = CGRect(x: x, y: y, width: bounds.width, height: _candleStickViewHeight())
+                    candleStickView.frame = CGRect(x: x,
+                                                   y: y,
+                                                   width: bounds.width,
+                                                   height: _candleStickViewHeight())
                     candleStickView.isHidden = false
                     previous = candleStickView
                 case .volume:
-                    volumeView.frame = CGRect(x: x, y: y, width: bounds.width, height: volumeViewHeight)
+                    volumeView.frame = CGRect(x: x,
+                                              y: y,
+                                              width: bounds.width,
+                                              height: volumeViewHeight)
                     volumeView.isHidden = false
                     previous = volumeView
                 case .accessory:
-                    accessoryView.frame = CGRect(x: x, y: y, width: bounds.width, height: accessoryViewHeight)
+                    accessoryView.frame = CGRect(x: x,
+                                                 y: y,
+                                                 width: bounds.width,
+                                                 height: accessoryViewHeight)
                     accessoryView.isHidden = false
                     previous = accessoryView
                 case .date:
-                    dateView.frame = CGRect(x: x, y: y, width: bounds.width, height: dateViewHeight)
+                    dateView.frame = CGRect(x: x,
+                                            y: y,
+                                            width: bounds.width,
+                                            height: dateViewHeight)
                     dateView.isHidden = false
                     previous = dateView
                 }

@@ -161,6 +161,8 @@ public extension XLKLine.AccessoryMACD {
     /// - Parameter limitValue: 边界值
     /// - Parameter config: 配置对象
     static func generate(models: [XLKLine.Model],
+                         leadingPreloadModels: [XLKLine.Model],
+                         trailingPreloadModels: [XLKLine.Model],
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
                          config: XLKLine.Config) -> Response {
@@ -177,6 +179,9 @@ public extension XLKLine.AccessoryMACD {
         var macd: [XLKLineLineBrushProtocol] = []
         var difPoints: XLKLine.Positions = []
         var deaPoints: XLKLine.Positions = []
+        
+
+        
         for (index, model) in models.enumerated() {
             
             let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
@@ -199,20 +204,52 @@ public extension XLKLine.AccessoryMACD {
                                                     lineWidth: klineWidth)
                 macd.append(model)
             }
+//            if let value = model.indicator.DIF {
+//
+//                let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+//                let y = CGFloat(-(value) / unitValue) + middleY
+//                difPoints.append(CGPoint(x: x, y: y))
+//            }
+//            if let value = model.indicator.DEA {
+//
+//                let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+//                let y = CGFloat(-(value) / unitValue) + middleY
+//                deaPoints.append(CGPoint(x: x, y: y))
+//            }
+        }
+        
+        for (index, model) in leadingPreloadModels.enumerated() {
+            
             if let value = model.indicator.DIF {
                 
-                let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = CGFloat(-(value) / unitValue) + middleY
                 difPoints.append(CGPoint(x: x, y: y))
             }
             if let value = model.indicator.DEA {
                 
-                let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = CGFloat(-(value) / unitValue) + middleY
                 deaPoints.append(CGPoint(x: x, y: y))
             }
-            
         }
+        
+        for (displayIndex, model) in (models + trailingPreloadModels).enumerated() {
+            
+            if let value = model.indicator.DIF {
+                
+                let x = CGFloat(displayIndex) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let y = CGFloat(-(value) / unitValue) + middleY
+                difPoints.append(CGPoint(x: x, y: y))
+            }
+            if let value = model.indicator.DEA {
+                
+                let x = CGFloat(displayIndex) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+                let y = CGFloat(-(value) / unitValue) + middleY
+                deaPoints.append(CGPoint(x: x, y: y))
+            }
+        }
+
         let difColor = config.accessoryMACDDIFColor
         let deaColor = config.accessoryMACDDEAColor
         let indicatorLineWidth = config.accessoryIndicatorLineWidth
@@ -235,7 +272,7 @@ public extension XLKLine.AccessoryMACD {
                                      L: Int,
                                      M: Int) {
         
-        for index in 0 ..< L + M - 1 {
+        for index in 0 ..< min(L + M - 1, models.count) {
             let model = models[index]
             if index < L {
                 model.indicator.DIF = nil

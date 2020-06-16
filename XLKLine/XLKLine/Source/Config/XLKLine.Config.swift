@@ -16,7 +16,7 @@ extension XLKLine {
         var candleStickIndicatorType: Model.IndicatorType = .MA
         
         /// 副视图指标类型
-        var accessoryIndicatorType: Model.IndicatorType = .KDJ
+        var accessoryIndicatorType: Model.IndicatorType = .WR
         
         /// 背景颜色
         var backgroundColor: UIColor = Color(hex: 0x24262F)
@@ -40,10 +40,10 @@ extension XLKLine {
         var dateViewHeight: CGFloat = 10
         
         /// k线的间隔
-        var klineSpace: CGFloat = 1.0
+        var klineSpace: CGFloat = 1.5
         
         /// k线图主体宽度
-        var klineWidth: CGFloat = 12.5
+        var klineWidth: CGFloat = 10
         
         /// 上下影线宽度
         var klineShadowLineWidth: CGFloat = 1.0
@@ -78,6 +78,12 @@ extension XLKLine {
         /// 交易量内边距
         var accessoryContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
+        /// 指标左侧预加载数量
+        var indicatorLeadingPreloadCount: Int = 1
+        
+        /// 指标右侧预加载数量
+        var indicatorTrailingPreloadCount: Int = 2
+        
         /// 垂直网格线数量
         var verticalAxisScaleLineCount: Int = 4
         
@@ -92,6 +98,21 @@ extension XLKLine {
         
         /// 副视图水平刻度线数量
         var accessoryHorizontalAxisScaleLineCount: Int = 1
+        
+        /// 分时线 日期格式
+        var timeLineDateFormat = "HH:mm"
+        
+        /// 分钟 日期格式
+        var minDateFormat = "MM-dd HH:mm"
+        
+        /// 天 日期格式
+        var dayDateFormat = "yyyy-MM-dd"
+        
+        /// 周 日期格式
+        var weekDateFormat = "yyyy-MM-dd"
+        
+        /// 周 日期格式
+        var monthDateFormat = "yyyy-MM-dd"
         
         /// 外观布局
         var viewStyles: [XLKLine.ViewStyle] = [.candleStick, .volume, .accessory, .date]

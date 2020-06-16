@@ -134,6 +134,8 @@ public extension XLKLine.AccessoryKDJ {
     /// - Parameter index: 当前数据索引
     /// - Parameter previous: 上一条数据
     static func generate(models: [XLKLine.Model],
+                         leadingPreloadModels: [XLKLine.Model],
+                         trailingPreloadModels: [XLKLine.Model],
                          bounds: CGRect,
                          limitValue: XLKLine.LimitValue,
                          config: XLKLine.Config) -> XLKLine.AccessoryKDJ.Response {
@@ -148,9 +150,33 @@ public extension XLKLine.AccessoryKDJ {
         var kPoints: [CGPoint] = []
         var dPoints: [CGPoint] = []
         var jPoints: [CGPoint] = []
-        for (index, model) in models.enumerated() {
+        
+        for (index, model) in leadingPreloadModels.enumerated() {
             
-            let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
+            let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+            if let value = model.indicator.KDJ_K {
+
+                let y: CGFloat = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
+                let point = CGPoint(x: x, y: y)
+                kPoints.append(point)
+            }
+            if let value = model.indicator.KDJ_D {
+                
+                let y: CGFloat = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
+                let point = CGPoint(x: x, y: y)
+                dPoints.append(point)
+            }
+            if let value = model.indicator.KDJ_J {
+                
+                let y: CGFloat = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
+                let point = CGPoint(x: x, y: y)
+                jPoints.append(point)
+            }  
+        }
+
+        for (displayIndex, model) in (models + trailingPreloadModels).enumerated() {
+            
+            let x = CGFloat(displayIndex) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
             if let value = model.indicator.KDJ_K {
 
                 let y: CGFloat = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop

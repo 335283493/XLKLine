@@ -39,7 +39,7 @@ extension XLKLine {
         public override func layoutSubviews() {
             super.layoutSubviews()
             
-            //            backgroundColor = manager.config.candleStickBackgroundColor
+//            backgroundColor = manager.config.candleStickBackgroundColor
             backgroundColor = .yellow
         }
         

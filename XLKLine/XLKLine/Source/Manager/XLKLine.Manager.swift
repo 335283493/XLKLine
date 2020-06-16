@@ -42,13 +42,24 @@ extension XLKLine {
         /// 显示模型
         /// - Parameter displayWidth: 显示宽度
         /// - Returns: 显示模型
-        public func displayModels(displayWidth: CGFloat? = nil) -> [XLKLine.Model] {
+        public func displayBarModels(displayWidth: CGFloat? = nil) -> [XLKLine.Model] {
             
             let width = displayWidth ?? getDisplayWidth()
-            return Manager.displayModels(models: models,
-                                         displayWidth: width,
-                                         currentLocation: currentLocation,
-                                         config: config)
+            return Manager.displayBarModels(models: models,
+                                            displayWidth: width,
+                                            currentLocation: currentLocation,
+                                            config: config)
+        }
+        
+        /// 显示指标模型
+        /// - Parameter displayWidth: 显示宽度
+        /// - Returns: 显示模型
+        public func displayIndicatorModels(displayWidth: CGFloat? = nil) -> XLKLine.Manager.DisplayModel {
+            let width = displayWidth ?? getDisplayWidth()
+            return Manager.displayIndicatorModels(models: models,
+                                                  displayWidth: width,
+                                                  currentLocation: currentLocation,
+                                                  config: config)
         }
         
         /// 蜡烛图绘制模型
@@ -57,7 +68,7 @@ extension XLKLine {
         open func displayCandleStickBarModel(bounds: CGRect) -> [XLKLineCandleStickBarBrushProtocol] {
             
             let type = config.candleStickIndicatorType
-            let models = displayModels()
+            let models = displayBarModels()
             guard let limitValue = Manager.candleStickLimitValue(models: models,
                                                                  indicatorType: type) else {
                                                                     return []
@@ -76,19 +87,23 @@ extension XLKLine {
         open func displayCandleStickIndicatorModel(bounds: CGRect) -> [XLKLineLineBrushProtocol] {
             
             let type = config.candleStickIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.candleStickLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.candleStickLimitValue(models: display.models,
                                                                  indicatorType: type) else {
                                                                     return []
             }
             switch type {
             case .MA:
-                return XLKLine.CandleStickMA.generate(models: models,
+                return XLKLine.CandleStickMA.generate(models: display.models,
+                                                      leadingPreloadModels: display.leadingPreloadModels,
+                                                      trailingPreloadModels: display.trailingPreloadModels,
                                                       bounds: bounds,
                                                       limitValue: limitValue,
                                                       config: config)
             case .BOLL:
-                return XLKLine.CandleStickBOLL.generate(models: models,
+                return XLKLine.CandleStickBOLL.generate(models: display.models,
+                                                        leadingPreloadModels: display.leadingPreloadModels,
+                                                        trailingPreloadModels: display.trailingPreloadModels,
                                                         bounds: bounds,
                                                         limitValue: limitValue,
                                                         config: config)
@@ -100,26 +115,28 @@ extension XLKLine {
         open func displayVolumeBarModel(bounds: CGRect) -> [XLKLineLineBrushProtocol] {
             
             let type = config.candleStickIndicatorType
-            let models = displayModels()
+            let models = displayBarModels()
             guard let limitValue = Manager.volumeLimitValue(models: models,
                                                             indicatorType: type) else {
                                                                 return []
             }
             return XLKLine.Volume.generate(models: models,
-                                                     bounds: bounds,
-                                                     limitValue: limitValue,
-                                                     config: config)
+                                           bounds: bounds,
+                                           limitValue: limitValue,
+                                           config: config)
         }
         
         open func displayVolumeIndicatorModel(bounds: CGRect) -> [XLKLineLineBrushProtocol] {
             
             let type = config.candleStickIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.volumeLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.volumeLimitValue(models: display.models,
                                                             indicatorType: type) else {
                                                                 return []
             }
-            return XLKLine.VolumeMA.generate(models: models,
+            return XLKLine.VolumeMA.generate(models: display.models,
+                                             leadingPreloadModels: display.leadingPreloadModels,
+                                             trailingPreloadModels: display.trailingPreloadModels,
                                              bounds: bounds,
                                              limitValue: limitValue,
                                              config: config)
@@ -128,12 +145,14 @@ extension XLKLine {
         open func displayAccessoryMACD(bounds: CGRect) -> XLKLine.AccessoryMACD.Response? {
             
             let type = config.accessoryIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.accessoryLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: display.models,
                                                                indicatorType: type) else {
                                                                 return nil
             }
-            return XLKLine.AccessoryMACD.generate(models: models,
+            return XLKLine.AccessoryMACD.generate(models: display.models,
+                                                  leadingPreloadModels: display.leadingPreloadModels,
+                                                  trailingPreloadModels: display.trailingPreloadModels,
                                                   bounds: bounds,
                                                   limitValue: limitValue,
                                                   config: config)
@@ -142,13 +161,15 @@ extension XLKLine {
         open func displayAccessoryKDJ(bounds: CGRect) -> XLKLine.AccessoryKDJ.Response? {
             
             let type = config.accessoryIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.accessoryLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: display.models,
                                                                indicatorType: type) else {
                                                                 return nil
             }
             
-            return XLKLine.AccessoryKDJ.generate(models: models,
+            return XLKLine.AccessoryKDJ.generate(models: display.models,
+                                                 leadingPreloadModels: display.leadingPreloadModels,
+                                                 trailingPreloadModels: display.trailingPreloadModels,
                                                  bounds: bounds,
                                                  limitValue: limitValue,
                                                  config: config)
@@ -157,12 +178,14 @@ extension XLKLine {
         open func displayAccessoryRSI(bounds: CGRect) -> [XLKLine.AccessoryRSI] {
             
             let type = config.accessoryIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.accessoryLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: display.models,
                                                                indicatorType: type) else {
                                                                 return []
             }
-            return XLKLine.AccessoryRSI.generate(models: models,
+            return XLKLine.AccessoryRSI.generate(models: display.models,
+                                                 leadingPreloadModels: display.leadingPreloadModels,
+                                                 trailingPreloadModels: display.trailingPreloadModels,
                                                  bounds: bounds,
                                                  limitValue: limitValue,
                                                  config: config)
@@ -171,15 +194,17 @@ extension XLKLine {
         open func displayAccessoryWR(bounds: CGRect) -> [XLKLine.AccessoryWR] {
             
             let type = config.accessoryIndicatorType
-            let models = displayModels()
-            guard let limitValue = Manager.accessoryLimitValue(models: models,
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.accessoryLimitValue(models: display.models,
                                                                indicatorType: type) else {
                                                                 return []
             }
-            return XLKLine.AccessoryWR.generate(models: models,
-                                                 bounds: bounds,
-                                                 limitValue: limitValue,
-                                                 config: config)
+            return XLKLine.AccessoryWR.generate(models: display.models,
+                                                leadingPreloadModels: display.leadingPreloadModels,
+                                                trailingPreloadModels: display.trailingPreloadModels,
+                                                bounds: bounds,
+                                                limitValue: limitValue,
+                                                config: config)
         }
         
         /// 重置当前位置
@@ -217,4 +242,3 @@ extension XLKLine {
         }
     }
 }
-
