@@ -10,6 +10,10 @@
 		718C4D944D24DD1774A5ABBD /* Pods_XLKLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3226FDBA7A007F3355413CD7 /* Pods_XLKLine.framework */; };
 		9906A06C24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A06B24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift */; };
 		9906A06E24934ED6002E3F51 /* XLKLine.Manager+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A06D24934ED6002E3F51 /* XLKLine.Manager+Display.swift */; };
+		9906A0702499BF06002E3F51 /* XLKLine.TimeLineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A06F2499BF06002E3F51 /* XLKLine.TimeLineType.swift */; };
+		9906A0722499C264002E3F51 /* XLKLine.TimestampType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A0712499C264002E3F51 /* XLKLine.TimestampType.swift */; };
+		9906A074249B5E89002E3F51 /* XLKLine.BezierBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A073249B5E89002E3F51 /* XLKLine.BezierBrush.swift */; };
+		9906A076249CB019002E3F51 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A075249CB019002E3F51 /* test.swift */; };
 		99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */; };
 		99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */; };
 		996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */; };
@@ -83,6 +87,10 @@
 		952455706AD351BF2E6DEE80 /* Pods-XLKLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLKLine.debug.xcconfig"; path = "Target Support Files/Pods-XLKLine/Pods-XLKLine.debug.xcconfig"; sourceTree = "<group>"; };
 		9906A06B24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.Manager.DisplayIndicator.swift; sourceTree = "<group>"; };
 		9906A06D24934ED6002E3F51 /* XLKLine.Manager+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.Manager+Display.swift"; sourceTree = "<group>"; };
+		9906A06F2499BF06002E3F51 /* XLKLine.TimeLineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.TimeLineType.swift; sourceTree = "<group>"; };
+		9906A0712499C264002E3F51 /* XLKLine.TimestampType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.TimestampType.swift; sourceTree = "<group>"; };
+		9906A073249B5E89002E3F51 /* XLKLine.BezierBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.BezierBrush.swift; sourceTree = "<group>"; };
+		9906A075249CB019002E3F51 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryKDJ.swift; sourceTree = "<group>"; };
 		99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryRSI.swift; sourceTree = "<group>"; };
 		996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryWR.swift; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 			children = (
 				99D5FB942463E03700A8C716 /* XLKLine.ViewStyle.swift */,
 				99D5FB952463E03700A8C716 /* XLKLine.Model.swift */,
+				9906A06F2499BF06002E3F51 /* XLKLine.TimeLineType.swift */,
 				99D5FB962463E03700A8C716 /* XLKLine.Model.IndicatorType.swift */,
 				99D5FB972463E03700A8C716 /* XLKLine.Model.Indicator.swift */,
 				99D5FBD32466A40400A8C716 /* XLKLine.CandleStickMA.swift */,
@@ -249,6 +258,7 @@
 				99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */,
 				996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */,
 				99D5FBD124655D7800A8C716 /* XLKLine.CandleStickBarBrushModel.swift */,
+				9906A0712499C264002E3F51 /* XLKLine.TimestampType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +281,7 @@
 				99D5FBB02463E06800A8C716 /* AppDelegate.swift */,
 				99D5FBB42463E06800A8C716 /* ViewController.swift */,
 				99D5FBCD2464249E00A8C716 /* KLineModel.swift */,
+				9906A075249CB019002E3F51 /* test.swift */,
 				99D5FBB62463E06800A8C716 /* Main.storyboard */,
 				99D5FBB92463E06A00A8C716 /* Assets.xcassets */,
 				99D5FBBB2463E06A00A8C716 /* LaunchScreen.storyboard */,
@@ -284,6 +295,7 @@
 			children = (
 				99D5FBC82463F53B00A8C716 /* XLKLine.LineBrush.swift */,
 				99D5FBCF246558AD00A8C716 /* XLKLine.CandleStickBarBrush.swift */,
+				9906A073249B5E89002E3F51 /* XLKLine.BezierBrush.swift */,
 			);
 			path = Brush;
 			sourceTree = "<group>";
@@ -497,13 +509,16 @@
 				99D5FBDB2469465900A8C716 /* XLKLine.Manager+IndicatorData.swift in Sources */,
 				99D5FBA02463E03700A8C716 /* Color.swift in Sources */,
 				99D5FBA22463E03700A8C716 /* XLKLine.ViewStyle.swift in Sources */,
+				9906A074249B5E89002E3F51 /* XLKLine.BezierBrush.swift in Sources */,
 				99D5FBC32463E13B00A8C716 /* XLKLine.View.swift in Sources */,
 				99D5FBA12463E03700A8C716 /* XLKLine.Manager.swift in Sources */,
 				99D5FBC92463F53C00A8C716 /* XLKLine.LineBrush.swift in Sources */,
 				99D5FB9F2463E03700A8C716 /* XLKLine.swift in Sources */,
 				99CEAA46247FA73400E689FB /* XLKLine.VolumeMA.swift in Sources */,
+				9906A0722499C264002E3F51 /* XLKLine.TimestampType.swift in Sources */,
 				99D5FBD42466A40400A8C716 /* XLKLine.CandleStickMA.swift in Sources */,
 				99D5FB9E2463E03700A8C716 /* XLKLine.Config.Theme.swift in Sources */,
+				9906A0702499BF06002E3F51 /* XLKLine.TimeLineType.swift in Sources */,
 				99CEAA48247FB2FC00E689FB /* XLKLine.Volume.swift in Sources */,
 				99D5FBD92469460300A8C716 /* XLKLine.Manager+LimitValue.swift in Sources */,
 				9906A06C24934D38002E3F51 /* XLKLine.Manager.DisplayIndicator.swift in Sources */,
@@ -524,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99D5FBB52463E06800A8C716 /* ViewController.swift in Sources */,
+				9906A076249CB019002E3F51 /* test.swift in Sources */,
 				99D5FBB12463E06800A8C716 /* AppDelegate.swift in Sources */,
 				99D5FBCE2464249E00A8C716 /* KLineModel.swift in Sources */,
 			);

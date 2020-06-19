@@ -18,6 +18,12 @@ extension XLKLine {
         /// 副视图指标类型
         var accessoryIndicatorType: Model.IndicatorType = .WR
         
+        /// 时间戳类型
+        var timestampType: TimestampType = .ms
+        
+        /// K线类型
+        var timeLineType: TimeLineType = .oneDay
+        
         /// 背景颜色
         var backgroundColor: UIColor = Color(hex: 0x24262F)
         
@@ -58,7 +64,7 @@ extension XLKLine {
         var klineScale: CGFloat = 0.03
         
         /// k线缩放因子
-        var klineScaleFactor: CGFloat = 0.03
+        var klineScaleFactor: CGFloat = 0.08
         
         /// 蜡烛图指标线宽度
         var candleStickIndicatorLineWidth: CGFloat = 0.8
@@ -100,10 +106,10 @@ extension XLKLine {
         var accessoryHorizontalAxisScaleLineCount: Int = 1
         
         /// 分时线 日期格式
-        var timeLineDateFormat = "HH:mm"
+        var realTimeDateFormat = "HH:mm"
         
         /// 分钟 日期格式
-        var minDateFormat = "MM-dd HH:mm"
+        var minuteDateFormat = "MM-dd HH:mm"
         
         /// 天 日期格式
         var dayDateFormat = "yyyy-MM-dd"

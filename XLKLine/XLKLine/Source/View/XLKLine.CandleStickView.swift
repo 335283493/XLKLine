@@ -61,26 +61,35 @@ extension XLKLine.CandleStickView {
     /// 绘制蜡烛图
     open func drawCandleStickBars() {
         
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
+//        guard let context = UIGraphicsGetCurrentContext() else {
+//            return
+//        }
+//        let models = manager.displayCandleStickBarModel(bounds: bounds)
+//        XLKLine.CandleStickBarBrush.draw(context: context,
+//                                         models: models)
+        drawRealTime()
+    }
+    
+    open func drawRealTime() {
+        
         let models = manager.displayCandleStickBarModel(bounds: bounds)
-        XLKLine.CandleStickBarBrush.draw(context: context,
-                                         bounds: bounds,
-                                         models: models)
+        let realTimeLayer = XLKLine.BezierBrush.draw(bounds: bounds,
+                                                     models: models)
+        layer.sublayers = nil
+        layer.addSublayer(realTimeLayer)
     }
     
     
     open func drawIndicator() {
         
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
-        let indicatorModels = manager.displayCandleStickIndicatorModel(bounds: bounds)
-        for model in indicatorModels {
-            XLKLine.LineBrush.draw(context: context,
-                                   model: model)
-        }
+//        guard let context = UIGraphicsGetCurrentContext() else {
+//            return
+//        }
+//        let indicatorModels = manager.displayCandleStickIndicatorModel(bounds: bounds)
+//        for model in indicatorModels {
+//            XLKLine.LineBrush.draw(context: context,
+//                                   model: model)
+//        }
     }
 }
 

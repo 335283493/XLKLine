@@ -44,3 +44,20 @@ extension XLKLine {
         }
     }
 }
+
+extension XLKLine.Model {
+    
+    /// 显示时间
+    /// - Parameters:
+    ///   - format: 时间格式
+    ///   - timestampType: 时间戳类型
+    /// - Returns: 时间
+    public func displayDate(format: String,
+                            timestampType: XLKLine.TimestampType) -> String {
+        
+        let date = Date(timeIntervalSince1970: self.date / Double(timestampType.rawValue))
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+}

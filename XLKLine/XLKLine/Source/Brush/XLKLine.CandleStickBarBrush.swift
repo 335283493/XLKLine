@@ -13,7 +13,6 @@ extension XLKLine {
     struct CandleStickBarBrush {
         
         public static func draw(context: CGContext,
-                                bounds: CGRect,
                                 models: [XLKLineCandleStickBarBrushProtocol]) {
 
             for model in models {

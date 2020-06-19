@@ -23,6 +23,9 @@ extension XLKLine {
         /// 当前拖动手势位置
         private var panGesturePoint: CGPoint?
         
+        /// 当前比例
+        private var scale: CGFloat = 1.0
+        
         /// 蜡烛图
         private lazy var candleStickView: XLKLine.CandleStickView = {
             var view = XLKLine.CandleStickView(manager: manager)
@@ -130,6 +133,11 @@ extension XLKLine {
             panGesture.delegate = self
             addGestureRecognizer(panGesture)
             
+            // 捏合手势
+            let pinchGesture = UIPinchGestureRecognizer(target: self,
+                                                        action: #selector(pinchAction))
+            addGestureRecognizer(pinchGesture)
+            
         }
         
         open func reloadData() {
@@ -138,6 +146,7 @@ extension XLKLine {
             candleStickView.reloadData()
             volumeView.reloadData()
             accessoryView.reloadData()
+            dateView.reloadData()
         }
         
         /// 配置Manager对象
@@ -199,5 +208,29 @@ extension XLKLine.View: UIGestureRecognizerDelegate {
         default:
             break
         }
+    }
+    
+    @objc private func pinchAction(recognizer: UIPinchGestureRecognizer) {
+        
+        let different = recognizer.scale - scale
+        let config = manager.config
+        guard abs(different) > manager.config.klineScale else {
+            
+            return
+        }
+        
+        
+
+        let newKLineScale = different > 0 ? 1 + config.klineScaleFactor : 1 - config.klineScaleFactor
+        let newKLineWidth = config.klineWidth * newKLineScale
+        
+        guard config.klineMinWidth <= newKLineWidth && newKLineWidth <= config.klineMaxWidth else {
+            
+            return
+        }
+        
+        manager.config.klineWidth = newKLineWidth
+        scale = recognizer.scale
+        reloadData()
     }
 }

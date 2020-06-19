@@ -25,11 +25,29 @@ extension XLKLine {
             dateLabels.removeAll()
             for _ in 0 ..< manager.config.verticalAxisScaleLineCount + 2 {
                 let label = UILabel()
+                label.textColor = .red
                 label.textAlignment = .center
                 label.font = UIFont.systemFont(ofSize: 10)
-                label.text = "2020-6-16"
                 addSubview(label)
                 dateLabels.append(label)
+            }
+        }
+        
+        open func reloadData() {
+            
+            let timestampType = manager.config.timestampType
+            let dateFormat = manager.config.timeLineType.dateFormat(config: manager.config)
+            let models = Array(manager.models[manager.currentLocation ..< manager.models.count])
+            let unitSpace = manager.config.klineWidth + manager.config.klineSpace
+            for (label) in dateLabels {
+                
+                label.text = ""
+                let index = Int(label.center.x / unitSpace)
+                if 0 <= index && index < models.count {
+                    let displayDate = models[index].displayDate(format: dateFormat,
+                                                                timestampType: timestampType)
+                    label.text = displayDate
+                }
             }
         }
         
