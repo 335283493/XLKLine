@@ -172,6 +172,15 @@ extension XLKLine {
             
             setupManager()
             addGestures()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.manager.config.timeLineType = .timeline
+                self.reloadData()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.manager.config.timeLineType = .oneMinute
+                self.reloadData()
+            }
         }
         
         required public init?(coder: NSCoder) {

@@ -12,7 +12,7 @@ public extension XLKLine {
     
     enum TimeLineType: Int {
         
-        case realTime       = 1 // 分时
+        case timeline       = 1 // 分时
         case oneMinute      = 2 // 1分
         case fiveMinute     = 3 // 5分
         case fifteenMinute  = 4 // 15分
@@ -26,7 +26,7 @@ public extension XLKLine {
         func dateFormat(config: Config) -> String  {
             
             switch self {
-            case .realTime:
+            case .timeline:
                 return config.realTimeDateFormat
             case .oneMinute, .fiveMinute, .fifteenMinute, .thirtyMinute, .oneHour:
                 return config.minuteDateFormat

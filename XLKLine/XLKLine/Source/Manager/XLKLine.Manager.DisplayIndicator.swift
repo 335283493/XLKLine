@@ -96,9 +96,6 @@ public extension XLKLine.Manager {
             
             trailingPreloadModels = Array(models[range])
         }
-//        print("display.count = \(leadingPreloadModels.count)")
-//        print("display.leadingPreloadCount = \(Array(models[range]).count)")
-//        print("display.trailingPreloadCount = \(trailingPreloadModels.count)")
         return (leadingPreloadModels, Array(models[range]), trailingPreloadModels)
     }
 }

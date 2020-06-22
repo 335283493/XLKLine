@@ -160,6 +160,15 @@ extension XLKLine {
         /// 副视图 WR 参数
         var accessoryWR: [Int] = [6, 10]
         
+        /// 蜡烛图分时线颜色
+        var candleStickTimelineColor: UIColor = Color(hex: 0x236AAD)
+        
+        /// 蜡烛图分时线渐变顶部颜色
+        var candleStickTimelineFillGradualTopColor: UIColor = Color(hex: 0x236AAD).withAlphaComponent(0.3)
+        
+        /// 蜡烛图分时线渐变底部颜色
+        var candleStickTimelineFillGradualBottomColor: UIColor = .clear
+        
         /// 蜡烛图MA5指标颜色
         var candleStickMA5Color: UIColor = Color(hex: 0x4498EA)
         

@@ -153,7 +153,8 @@ public extension XLKLine.AccessoryKDJ {
         
         for (index, model) in leadingPreloadModels.enumerated() {
             
-            let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+            let displayIndex = leadingPreloadModels.count - index - 1
+            let x = -CGFloat(displayIndex) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
             if let value = model.indicator.KDJ_K {
 
                 let y: CGFloat = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop

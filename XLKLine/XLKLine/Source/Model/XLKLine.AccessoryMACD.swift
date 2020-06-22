@@ -220,15 +220,16 @@ public extension XLKLine.AccessoryMACD {
         
         for (index, model) in leadingPreloadModels.enumerated() {
             
+            let displayIndex = leadingPreloadModels.count - index - 1
             if let value = model.indicator.DIF {
                 
-                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+                let x = -CGFloat(displayIndex) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = CGFloat(-(value) / unitValue) + middleY
                 difPoints.append(CGPoint(x: x, y: y))
             }
             if let value = model.indicator.DEA {
                 
-                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+                let x = -CGFloat(displayIndex) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = CGFloat(-(value) / unitValue) + middleY
                 deaPoints.append(CGPoint(x: x, y: y))
             }

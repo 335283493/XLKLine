@@ -81,6 +81,21 @@ extension XLKLine {
                                                              config: config)
         }
         
+        open func displayCandleStickTimeLineModel(bounds: CGRect) -> CandleStickTimeline? {
+            
+            let display = displayIndicatorModels()
+            guard let limitValue = Manager.candleStickLimitValue(models: display.models,
+                                                                 indicatorType: .NONE) else {
+                                                                    return nil
+            }
+            return XLKLine.CandleStickTimeline.generate(models: display.models,
+                                                        leadingPreloadModels: display.leadingPreloadModels,
+                                                        trailingPreloadModels: display.trailingPreloadModels,
+                                                        bounds: bounds,
+                                                        limitValue: limitValue,
+                                                        config: config)
+        }
+        
         /// 蜡烛图绘制指标模型
         /// - Parameter bounds: 绘制范围
         /// - Returns: 绘制指标模型

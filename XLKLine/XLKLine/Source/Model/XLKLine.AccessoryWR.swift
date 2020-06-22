@@ -115,9 +115,10 @@ public extension XLKLine.AccessoryWR {
         
         for (index, model) in leadingPreloadModels.enumerated() {
             
+            let displayIndex = leadingPreloadModels.count - index - 1
             for (day, value) in model.indicator.WR ?? [:] {
                 
-                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+                let x = -CGFloat(displayIndex) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
                 let point = CGPoint(x: x, y: y)
                 lines[day]?.positions[index] = point

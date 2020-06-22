@@ -32,7 +32,7 @@ extension XLKLine {
             super.draw(rect)
             
             drawAxisScaleLines()
-            drawCandleStickBars()
+            drawCandleStickData()
             drawIndicator()
         }
         
@@ -58,23 +58,36 @@ extension XLKLine {
 // MARK: - 绘制数据
 extension XLKLine.CandleStickView {
     
+    open func drawCandleStickData() {
+        
+        layer.sublayers = nil
+        switch manager.config.timeLineType {
+        case .timeline:
+            drawTimeline()
+        default:
+            drawCandleStickBars()
+        }
+    }
+    
     /// 绘制蜡烛图
     open func drawCandleStickBars() {
         
-//        guard let context = UIGraphicsGetCurrentContext() else {
-//            return
-//        }
-//        let models = manager.displayCandleStickBarModel(bounds: bounds)
-//        XLKLine.CandleStickBarBrush.draw(context: context,
-//                                         models: models)
-        drawRealTime()
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let models = manager.displayCandleStickBarModel(bounds: bounds)
+        XLKLine.CandleStickBarBrush.draw(context: context,
+                                         models: models)
     }
     
-    open func drawRealTime() {
+    /// 绘制分时图
+    open func drawTimeline() {
         
-        let models = manager.displayCandleStickBarModel(bounds: bounds)
-        let realTimeLayer = XLKLine.BezierBrush.draw(bounds: bounds,
-                                                     models: models)
+        guard  let model = manager.displayCandleStickTimeLineModel(bounds: bounds) else {
+            return
+        }
+        let realTimeLayer = XLKLine.CandleStickTimelineBrush.draw(bounds: bounds,
+                                                                  model: model)
         layer.sublayers = nil
         layer.addSublayer(realTimeLayer)
     }
@@ -82,14 +95,18 @@ extension XLKLine.CandleStickView {
     
     open func drawIndicator() {
         
-//        guard let context = UIGraphicsGetCurrentContext() else {
-//            return
-//        }
-//        let indicatorModels = manager.displayCandleStickIndicatorModel(bounds: bounds)
-//        for model in indicatorModels {
-//            XLKLine.LineBrush.draw(context: context,
-//                                   model: model)
-//        }
+        guard manager.config.timeLineType != .timeline else {
+            return
+        }
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        let indicatorModels = manager.displayCandleStickIndicatorModel(bounds: bounds)
+        for model in indicatorModels {
+            XLKLine.LineBrush.draw(context: context,
+                                   model: model)
+        }
     }
 }
 

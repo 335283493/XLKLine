@@ -92,7 +92,7 @@ public extension XLKLine.CandleStickMA {
             
             return []
         }
-        let paddingTop: CGFloat = 0
+        let paddingTop: CGFloat = config.candleStickContentInset.top
         let indicatorLineWidth = config.candleStickIndicatorLineWidth
         let klineSpace = config.klineSpace
         let klineWidth = config.klineWidth
@@ -119,7 +119,8 @@ public extension XLKLine.CandleStickMA {
             
             for (day, value) in model.indicator.MA ?? [:] {
                 
-                let x = -CGFloat(index) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
+                let displayIndex = leadingPreloadModels.count - index - 1
+                let x = -CGFloat(displayIndex) * (klineWidth + klineSpace) - klineWidth * 0.5 - klineSpace
                 let y = abs(drawMaxY - CGFloat((value - limitValue.min) / unitValue)) + paddingTop
                 let point = CGPoint(x: x, y: y)
                 lines[day]?.positions[index] = point
