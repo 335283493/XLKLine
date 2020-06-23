@@ -12,21 +12,36 @@ extension XLKLine {
     
     struct BezierBrush {
         
-        public static func bezierPath(models: [CGPoint?]) -> UIBezierPath {
+        public static func bezierPath(models: [CGPoint]) -> UIBezierPath {
             
-            let lineSmoothness: CGFloat = 0.16
+            if models.isEmpty {
+                
+                return UIBezierPath()
+            }
+            
+            let lineSmoothness: CGFloat = 0.15
             let path = UIBezierPath()
             
             var prePreviousPoint: CGPoint?
             var previousPoint: CGPoint?
             var currentPoint: CGPoint?
             var nextPoint: CGPoint?
-            
-            for (index, model) in models.enumerated() {
+
+            var maxY: CGFloat = models[0].y
+            var minY: CGFloat = models[0].y
+            for model in models {
                 
-                guard let model = model else {
-                    continue
+                if model.y > maxY {
+                    maxY = model.y
                 }
+                
+                if model.y < minY {
+                    minY = model.y
+                }
+            }
+
+            for (index, model) in models.enumerated() {
+   
                 if currentPoint == nil {
                     currentPoint = model
                 }
@@ -53,12 +68,14 @@ extension XLKLine {
                     let secondDiff = CGPoint(x: nextPoint.x - previousPoint.x,
                                              y: nextPoint.y - previousPoint.y)
                     
-                    let fistControl = CGPoint(x: previousPoint.x + lineSmoothness * firstDiff.x,
+                    var firstControl = CGPoint(x: previousPoint.x + lineSmoothness * firstDiff.x,
                                               y: previousPoint.y + lineSmoothness * firstDiff.y)
-                    let secondControl = CGPoint(x: currentPoint.x - lineSmoothness * secondDiff.x,
+                    var secondControl = CGPoint(x: currentPoint.x - lineSmoothness * secondDiff.x,
                                                 y: currentPoint.y - lineSmoothness * secondDiff.y)
+                    firstControl.y = max(min(firstControl.y, maxY), minY)
+                    secondControl.y = max(min(secondControl.y, maxY), minY)
                     path.addCurve(to: currentPoint,
-                                      controlPoint1: fistControl,
+                                      controlPoint1: firstControl,
                                       controlPoint2: secondControl)
                 }
                 

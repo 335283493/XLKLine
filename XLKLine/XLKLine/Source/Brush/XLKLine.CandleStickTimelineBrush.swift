@@ -15,13 +15,23 @@ extension XLKLine {
         public static func draw(bounds: CGRect,
                                 model: CandleStickTimeline) -> CALayer {
 
-            let positions = model.positions.filter { $0 != nil }
+            let lineLayer = CAShapeLayer()
+            if model.positions.isEmpty {
+                return lineLayer
+            }
+            
+            var positions: [CGPoint] = []
+            model.positions.forEach {
+      
+                $0 != nil ? positions.append($0!) : nil
+            }
+
             let linePath = XLKLine.BezierBrush.bezierPath(models: positions)
             linePath.lineWidth = model.lineWidth
             
-            let firstX = positions.first??.x ?? 0
-            let lastX = positions.last??.x ?? 0
-            let lineLayer = CAShapeLayer()
+            let firstX = positions.first?.x ?? 0
+            let lastX = positions.last?.x ?? 0
+
             lineLayer.path = linePath.cgPath
             lineLayer.lineWidth = model.lineWidth
             lineLayer.strokeColor = model.lineColor.cgColor

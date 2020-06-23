@@ -32,6 +32,7 @@ extension XLKLine {
             super.draw(rect)
             
             drawAxisScaleLines()
+            drawHorizontalAxisScaleLines()
             drawCandleStickData()
             drawIndicator()
         }
@@ -83,7 +84,7 @@ extension XLKLine.CandleStickView {
     /// 绘制分时图
     open func drawTimeline() {
         
-        guard  let model = manager.displayCandleStickTimeLineModel(bounds: bounds) else {
+        guard let model = manager.displayCandleStickTimeLineModel(bounds: bounds) else {
             return
         }
         let realTimeLayer = XLKLine.CandleStickTimelineBrush.draw(bounds: bounds,
@@ -111,7 +112,7 @@ extension XLKLine.CandleStickView {
 }
 
 // MARK: - 绘制网格
-extension XLKLine.CandleStickView: XLKLineDrawVerticalAxisScaleLineProtocol {
+extension XLKLine.CandleStickView: XLKLineDrawVerticalAxisScaleLineProtocol, XLKLineDrawHorizontalAxisScaleLineProtocol {
     
     /// 绘制垂直网格
     open func drawVerticalAxisScaleLines() {
@@ -121,9 +122,23 @@ extension XLKLine.CandleStickView: XLKLineDrawVerticalAxisScaleLineProtocol {
         }
         drawVerticalAxisScaleLines(context: context,
                                    drawSize: bounds.size,
-                                   contentInset: manager.config.candleStickContentInset,
+                                   contentInset: .zero,
                                    lineCount: manager.config.verticalAxisScaleLineCount,
                                    lineColor: manager.config.axisScaleLineColor,
                                    lineWidth: manager.config.axisScaleLineWidth)
+    }
+    
+    /// 绘制水平网格
+    open func drawHorizontalAxisScaleLines() {
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        drawHorizontalAxisScaleLines(context: context,
+                                     drawSize: bounds.size,
+                                     contentInset: manager.config.candleStickContentInset,
+                                     lineCount: manager.config.horizontalCandleStickLineCount,
+                                     lineColor: manager.config.axisScaleLineColor,
+                                     lineWidth: manager.config.axisScaleLineWidth)
     }
 }

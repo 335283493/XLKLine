@@ -22,7 +22,7 @@ extension XLKLine {
         var timestampType: TimestampType = .ms
         
         /// K线类型
-        var timeLineType: TimeLineType = .oneDay
+        var timeLineType: TimeLineType = .timeline
         
         /// 背景颜色
         var backgroundColor: UIColor = Color(hex: 0x24262F)
@@ -76,12 +76,12 @@ extension XLKLine {
         var accessoryIndicatorLineWidth: CGFloat = 0.8
         
         /// 蜡烛图内边距
-        var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         /// 交易量内边距
         var volumeContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
-        /// 交易量内边距
+        /// 副视图内边距
         var accessoryContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         /// 指标左侧预加载数量
@@ -92,6 +92,9 @@ extension XLKLine {
         
         /// 垂直网格线数量
         var verticalAxisScaleLineCount: Int = 4
+        
+        /// 蜡烛图水平网格线数量
+        var horizontalCandleStickLineCount: Int = 5
         
         /// 网格线宽度
         var axisScaleLineWidth: CGFloat = 0.8

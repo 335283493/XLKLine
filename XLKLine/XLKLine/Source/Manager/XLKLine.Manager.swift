@@ -80,13 +80,12 @@ extension XLKLine {
                                                              limitValue: limitValue,
                                                              config: config)
         }
-        
+
         open func displayCandleStickTimeLineModel(bounds: CGRect) -> CandleStickTimeline? {
             
             let display = displayIndicatorModels()
-            guard let limitValue = Manager.candleStickLimitValue(models: display.models,
-                                                                 indicatorType: .NONE) else {
-                                                                    return nil
+            guard let limitValue = Manager.closeLimitValue(models: display.models) else {
+                return nil
             }
             return XLKLine.CandleStickTimeline.generate(models: display.models,
                                                         leadingPreloadModels: display.leadingPreloadModels,

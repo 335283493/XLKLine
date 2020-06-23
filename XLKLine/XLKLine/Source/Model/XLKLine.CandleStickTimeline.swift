@@ -62,10 +62,9 @@ public extension XLKLine.CandleStickTimeline {
         for (index, model) in (models + trailingPreloadModels).enumerated() {
             
             let x = CGFloat(index) * (klineWidth + klineSpace) + klineWidth * 0.5 + klineSpace
-            let close = abs(maxHeight - CGFloat((model.close - limitValue.min) / unitValue)) + contentInset.top
+            let close = maxHeight - CGFloat((model.close - limitValue.min) / unitValue) + contentInset.top
             postitons.append(CGPoint(x: x, y: close))
         }
-        
         return XLKLine.CandleStickTimeline(positions: postitons,
                                            lineColor: lineColor,
                                            lineWidth: lineWidth,

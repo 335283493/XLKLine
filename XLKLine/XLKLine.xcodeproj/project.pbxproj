@@ -16,6 +16,7 @@
 		9906A076249CB019002E3F51 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A075249CB019002E3F51 /* test.swift */; };
 		9906A07824A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07724A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift */; };
 		9906A07A24A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07924A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift */; };
+		9906A07C24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07B24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift */; };
 		99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */; };
 		99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */; };
 		996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */; };
@@ -95,6 +96,7 @@
 		9906A075249CB019002E3F51 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		9906A07724A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.CandleStick\U0010Timeline.swift"; sourceTree = "<group>"; };
 		9906A07924A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickTimelineBrush.swift; sourceTree = "<group>"; };
+		9906A07B24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLineDrawHorizontalAxisScaleLineProtocol.swift; sourceTree = "<group>"; };
 		99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryKDJ.swift; sourceTree = "<group>"; };
 		99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryRSI.swift; sourceTree = "<group>"; };
 		996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryWR.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				99D5FBCB2463F60600A8C716 /* XLKLineDrawVerticalAxisScaleLineProtocol.swift */,
+				9906A07B24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				99D5FBA62463E03700A8C716 /* XLKLine.VolumeView.swift in Sources */,
 				9906A06E24934ED6002E3F51 /* XLKLine.Manager+Display.swift in Sources */,
 				99D5FBD0246558AD00A8C716 /* XLKLine.CandleStickBarBrush.swift in Sources */,
+				9906A07C24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift in Sources */,
 				99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */,
 				99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */,
 				99D5FBA82463E03700A8C716 /* XLKLine.AccessoryView.swift in Sources */,

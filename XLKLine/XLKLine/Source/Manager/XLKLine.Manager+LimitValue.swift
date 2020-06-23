@@ -11,6 +11,31 @@ import Foundation
 /// Manager扩展 计算边界值
 extension XLKLine.Manager {
     
+    public static func closeLimitValue(models: [XLKLine.Model]) -> XLKLine.LimitValue? {
+        
+        if models.count <= 0 {
+            return nil
+        }
+        var minValue = models[0].close
+        var maxValue = models[0].close
+        
+        for model in models {
+            
+            if model.close < minValue {
+                minValue = model.close
+            }
+            if model.close > maxValue {
+                maxValue = model.close
+            }
+        }
+        
+        if maxValue == minValue {
+            maxValue += 20
+            minValue -= 20
+        }
+        return (minValue, maxValue)
+    }
+    
     /// 蜡烛图计算边界值
     /// - Parameters:
     ///   - models: 数据
@@ -56,7 +81,6 @@ extension XLKLine.Manager {
                     minValue = value < minValue ? value : minValue
                     maxValue = value > maxValue ? value : maxValue
                 }
-                
             default:
                 break
             }
