@@ -24,11 +24,14 @@ extension XLKLine {
         /// K线类型
         var timeLineType: TimeLineType = .timeline
         
+        /// 显示数字小数点位数
+        var decimalScale: Int = 2
+        
         /// 背景颜色
-        var backgroundColor: UIColor = Color(hex: 0x24262F)
+        var backgroundColor: UIColor = Color(hex: 0x0D1926)
         
         /// 蜡烛图背景颜色
-        var candleStickBackgroundColor: UIColor = Color(hex: 0x24262F)
+        var candleStickBackgroundColor: UIColor = Color(hex: 0x0D1926)
         
         /// 涨的颜色
         var increaseColor: UIColor = Color(hex: 0xFF5353)
@@ -37,13 +40,13 @@ extension XLKLine {
         var decreaseColor: UIColor = Color(hex: 0x00B07C)
         
         /// 量视图高度
-        var volumeViewHeightScale: CGFloat = 0.15
+        var volumeViewHeightScale: CGFloat = 0.12
         
         /// 副视图高度
-        var accessoryViewHeightScale: CGFloat = 0.15
+        var accessoryViewHeightScale: CGFloat = 0.12
         
         /// 日期视图高度
-        var dateViewHeight: CGFloat = 10
+        var dateViewHeight: CGFloat = 20
         
         /// k线的间隔
         var klineSpace: CGFloat = 1.5
@@ -69,6 +72,9 @@ extension XLKLine {
         /// 蜡烛图指标线宽度
         var candleStickIndicatorLineWidth: CGFloat = 0.8
         
+        /// 蜡烛图分时线宽度
+        var candleStickTimelineWidth: CGFloat = 1.5
+        
         /// 交易量指标线宽度
         var volumeIndicatorLineWidth: CGFloat = 0.8
         
@@ -76,7 +82,7 @@ extension XLKLine {
         var accessoryIndicatorLineWidth: CGFloat = 0.8
         
         /// 蜡烛图内边距
-        var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        var candleStickContentInset: UIEdgeInsets = UIEdgeInsets(top: 40, left: 0, bottom: 5, right: 0)
         
         /// 交易量内边距
         var volumeContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -94,16 +100,16 @@ extension XLKLine {
         var verticalAxisScaleLineCount: Int = 4
         
         /// 蜡烛图水平网格线数量
-        var horizontalCandleStickLineCount: Int = 5
+        var horizontalCandleStickAxisScaleLineCount: Int = 4
         
         /// 网格线宽度
         var axisScaleLineWidth: CGFloat = 0.8
         
         /// 网格线颜色
-        var axisScaleLineColor: UIColor = Color(hex: 0x696969)
+        var axisScaleLineColor: UIColor = Color(hex: 0x172A40)
         
         /// 蜡烛图水平刻度线数量
-        var candleStickHorizontalAxisScaleLineCount: Int = 4
+        var candleStickHorizontalAxisScaleLineCount: Int = 3
         
         /// 副视图水平刻度线数量
         var accessoryHorizontalAxisScaleLineCount: Int = 1
@@ -162,6 +168,15 @@ extension XLKLine {
         
         /// 副视图 WR 参数
         var accessoryWR: [Int] = [6, 10]
+        
+        /// 蜡烛图轴刻度字体
+        var candleStickAxisScaleFont: UIFont = UIFont.systemFont(ofSize: 10)
+        
+        /// 蜡烛图轴刻度宽度
+        var candleStickAxisScaleWidth: CGFloat = 120
+        
+        /// 蜡烛图轴刻度文字颜色
+        var candleStickAxisScaleTextColor: UIColor = Color(hex: 0x768AA7)
         
         /// 蜡烛图分时线颜色
         var candleStickTimelineColor: UIColor = Color(hex: 0x236AAD)

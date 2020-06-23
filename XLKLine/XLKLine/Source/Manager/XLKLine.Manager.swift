@@ -62,16 +62,26 @@ extension XLKLine {
                                                   config: config)
         }
         
+        
+        /// 显示数据范围值
+        /// - Parameter bounds: 显示范围
+        /// - Returns: 范围值
+        open func displayBarLimitValue(bounds: CGRect) -> LimitValue? {
+            
+            let type = config.candleStickIndicatorType
+            let models = displayBarModels()
+            return Manager.candleStickLimitValue(models: models,
+                                                 indicatorType: type)
+        }
+        
         /// 蜡烛图绘制模型
         /// - Parameter bounds: 绘制范围
         /// - Returns: 绘制模型
         open func displayCandleStickBarModel(bounds: CGRect) -> [XLKLineCandleStickBarBrushProtocol] {
             
-            let type = config.candleStickIndicatorType
             let models = displayBarModels()
-            guard let limitValue = Manager.candleStickLimitValue(models: models,
-                                                                 indicatorType: type) else {
-                                                                    return []
+            guard let limitValue = displayBarLimitValue(bounds: bounds) else {
+                return []
             }
             let contentInset = config.candleStickContentInset
             return XLKLine.CandleStickBarBrushModel.generate(models: models,

@@ -82,6 +82,6 @@ public extension XLKLine.Manager {
             
             return 0
         }
-        return modelsCount - minCount - 1
+        return max(modelsCount - minCount - 1, 0)
     }
 }

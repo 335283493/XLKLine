@@ -45,7 +45,7 @@ public extension XLKLine.CandleStickTimeline {
         let contentInset = config.candleStickContentInset
         let klineWidth = config.klineWidth
         let klineSpace = config.klineSpace
-        let lineWidth = config.candleStickIndicatorLineWidth
+        let lineWidth = config.candleStickTimelineWidth
         let lineColor = config.candleStickTimelineColor
         let maxHeight = bounds.height - contentInset.top - contentInset.bottom
         let unitValue = (limitValue.max - limitValue.min) / Double(maxHeight)

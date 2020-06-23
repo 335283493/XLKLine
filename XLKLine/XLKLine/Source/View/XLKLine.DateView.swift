@@ -34,7 +34,10 @@ extension XLKLine {
         }
         
         open func reloadData() {
-            
+
+            if manager.currentLocation < 0 {
+                return
+            }
             let timestampType = manager.config.timestampType
             let dateFormat = manager.config.timeLineType.dateFormat(config: manager.config)
             let models = Array(manager.models[manager.currentLocation ..< manager.models.count])

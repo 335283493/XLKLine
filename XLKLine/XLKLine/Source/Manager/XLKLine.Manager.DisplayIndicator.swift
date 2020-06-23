@@ -26,7 +26,6 @@ public extension XLKLine.Manager {
         if modelsCount == 0 { //  数据为空
             return (0, 0, 0)
         }
-        
         let minCount = minDisplayBarCount(displayWidth: displayWidth,
                                           config: config)
         let maxCount = maxDisplayBarCount(displayWidth: displayWidth,
@@ -62,7 +61,6 @@ public extension XLKLine.Manager {
                                                             modelsCount: models.count,
                                                             currentLocation: currentLocation,
                                                             config: config)
-
         let leadingPreloadLocation = currentLocation - display.leadingPreloadCount
         let leadingPreloadLength = display.leadingPreloadCount
         
