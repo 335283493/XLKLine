@@ -39,12 +39,11 @@ extension XLKLine {
         public override func layoutSubviews() {
             super.layoutSubviews()
             
-//            backgroundColor = manager.config.candleStickBackgroundColor
-            backgroundColor = .yellow
+            backgroundColor = manager.config.volumeBackgroundColor
         }
         
         // MARK: - Init
-        public init(manager: XLKLine.Manager = Manager()) {
+        public init(manager: XLKLine.Manager) {
             self.manager = manager
             super.init(frame: .zero)
         }

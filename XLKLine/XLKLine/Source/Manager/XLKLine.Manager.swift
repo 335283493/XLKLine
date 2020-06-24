@@ -260,6 +260,43 @@ extension XLKLine {
             currentLocation = min(defualtLocation, max(currentLocation, 0))
         }
         
+        
+        /// x坐标重叠数据的index
+        /// - Parameter locationX: x坐标
+        /// - Returns: 数据的index
+        open func barIndex(locationX: CGFloat) -> Int? {
+            
+            let models = displayBarModels()
+            guard !models.isEmpty else {
+                return nil
+            }
+            let unitSpace = config.klineWidth + config.klineSpace
+            return min(Int(locationX / unitSpace), models.count - 1)
+        }
+        
+        /// x坐标重叠的数据
+        /// - Parameter locationX: x坐标
+        /// - Returns: 重叠的数据
+        open func model(locationX: CGFloat) -> XLKLine.Model? {
+            
+            guard let index = barIndex(locationX: locationX) else {
+                return nil
+            }
+            return displayBarModels()[index]
+        }
+        
+        /// x坐标重叠的 bar.frame.x
+        /// - Parameter locationX: x坐标
+        /// - Returns: bar.frame.x
+        open func barFrameX(locationX: CGFloat) -> CGFloat? {
+            
+            let unitSpace = config.klineWidth + config.klineSpace
+            guard let index = barIndex(locationX: locationX) else {
+                return nil
+            }
+            return CGFloat(index) * unitSpace + 1.5
+        }
+        
         // MARK: - Init
         public init() {
             

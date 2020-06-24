@@ -67,10 +67,12 @@ extension XLKLine {
                                      width: width,
                                      height: height)
             }
+            
+            backgroundColor = manager.config.dateBackgroundColor
         }
             
         // MARK: - Init
-        public init(manager: XLKLine.Manager = Manager()) {
+        public init(manager: XLKLine.Manager) {
             self.manager = manager
             super.init(frame: .zero)
             initDateLabels()

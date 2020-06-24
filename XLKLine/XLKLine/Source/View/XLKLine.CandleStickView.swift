@@ -49,7 +49,7 @@ extension XLKLine {
         }
         
         // MARK: - Init
-        public init(manager: XLKLine.Manager = Manager()) {
+        public init(manager: XLKLine.Manager) {
             self.manager = manager
             super.init(frame: .zero)
         }
@@ -204,9 +204,11 @@ extension XLKLine.CandleStickView {
                 let y = CGFloat(index) * spaceHeight + contentInset.top - height - bottomOffset
                 frame = CGRect(x: x, y: y, width: width, height: height)
             }
-            let value = limitValue.min + unitValue * Double(textLayerCount - index - 1)
+            let number = limitValue.min + unitValue * Double(textLayerCount - index - 1)
             textLayer.frame = frame
-            textLayer.string = "\(value)"
+            textLayer.string = XLKLine.display(number: number,
+                                               minimumFractionDigits: config.candleStickAxisScaleMinFractionDigits,
+                                               maximumFractionDigits: config.candleStickAxisScaleMaxFractionDigits)
             layer.addSublayer(textLayer)
         }
     }

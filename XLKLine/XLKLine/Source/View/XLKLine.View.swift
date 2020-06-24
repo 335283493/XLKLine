@@ -54,6 +54,14 @@ extension XLKLine {
             return view
         }()
         
+        /// 详情图
+        private lazy var detailView: XLKLine.DetailView = {
+            var view = XLKLine.DetailView(manager: manager)
+            view.isHidden = true
+            addSubview(view)
+            return view
+        }()
+
         // MARK: - Method
         /// 约束视图
         func constraintViews() {
@@ -123,6 +131,7 @@ extension XLKLine {
                     previous = dateView
                 }
             }
+            detailView.frame = bounds
         }
         
         open func addGestures() {
@@ -138,6 +147,15 @@ extension XLKLine {
                                                         action: #selector(pinchAction))
             addGestureRecognizer(pinchGesture)
             
+            // 点击手势
+            let tapGesture = UITapGestureRecognizer(target: self,
+                                                    action: #selector(tapGestureAction))
+            addGestureRecognizer(tapGesture)
+            
+            // 长按手势
+            let longPressGesture = UILongPressGestureRecognizer(target: self,
+                                                                action: #selector(longPressAction))
+            addGestureRecognizer(longPressGesture)
         }
         
         open func reloadData() {
@@ -147,6 +165,7 @@ extension XLKLine {
             volumeView.reloadData()
             accessoryView.reloadData()
             dateView.reloadData()
+            detailView.reloadData()
         }
         
         /// 配置Manager对象
@@ -218,19 +237,31 @@ extension XLKLine.View: UIGestureRecognizerDelegate {
             
             return
         }
-        
-        
-
         let newKLineScale = different > 0 ? 1 + config.klineScaleFactor : 1 - config.klineScaleFactor
         let newKLineWidth = config.klineWidth * newKLineScale
-        
         guard config.klineMinWidth <= newKLineWidth && newKLineWidth <= config.klineMaxWidth else {
             
             return
         }
-        
         manager.config.klineWidth = newKLineWidth
         scale = recognizer.scale
         reloadData()
+    }
+    
+    @objc private func tapGestureAction(recognizer: UIPanGestureRecognizer) {
+        
+        detailView.longPressPosition = nil
+        detailView.reloadData()
+    }
+
+    // MARK: 长按手势
+    @objc fileprivate func longPressAction(_ recognizer: UILongPressGestureRecognizer) {
+        
+        if recognizer.state == .began || recognizer.state == .changed {
+            
+            let position: CGPoint = recognizer.location(in: recognizer.view)
+            detailView.longPressPosition = position
+            detailView.reloadData()
+        }
     }
 }

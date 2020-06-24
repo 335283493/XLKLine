@@ -33,11 +33,23 @@ extension XLKLine {
         /// 蜡烛图背景颜色
         var candleStickBackgroundColor: UIColor = Color(hex: 0x0D1926)
         
+        /// 交易量图背景颜色
+        var volumeBackgroundColor: UIColor = Color(hex: 0x0D1926)
+        
+        /// 副视图背景颜色
+        var accessoryBackgroundColor: UIColor = Color(hex: 0x0D1926)
+        
+        /// 日期视图背景颜色
+        var dateBackgroundColor: UIColor = Color(hex: 0x0D1926)
+        
         /// 涨的颜色
         var increaseColor: UIColor = Color(hex: 0xFF5353)
         
         /// 跌的颜色
         var decreaseColor: UIColor = Color(hex: 0x00B07C)
+        
+        /// 选中视图颜色
+        var selectViewBackgroundColor: UIColor = Color(hex: 0xFFFFFF).withAlphaComponent(0.3)
         
         /// 量视图高度
         var volumeViewHeightScale: CGFloat = 0.12
@@ -101,6 +113,12 @@ extension XLKLine {
         
         /// 蜡烛图水平网格线数量
         var horizontalCandleStickAxisScaleLineCount: Int = 4
+        
+        /// 蜡烛图水平数值大数点最小保留位数
+        var candleStickAxisScaleMaxFractionDigits: Int = 2
+        
+        /// 蜡烛图水平数值小数点最小保留位数
+        var candleStickAxisScaleMinFractionDigits: Int = 2
         
         /// 网格线宽度
         var axisScaleLineWidth: CGFloat = 0.8

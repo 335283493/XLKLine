@@ -17,6 +17,8 @@
 		9906A07824A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07724A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift */; };
 		9906A07A24A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07924A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift */; };
 		9906A07C24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07B24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift */; };
+		9906A07F24A2FBB7002E3F51 /* XLKLine.DisplayNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A07E24A2FBB7002E3F51 /* XLKLine.DisplayNumber.swift */; };
+		9906A08124A326DC002E3F51 /* XLKLine.DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9906A08024A326DC002E3F51 /* XLKLine.DetailView.swift */; };
 		99636162248A294400767FF7 /* XLKLine.AccessoryKDJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */; };
 		99636164248F679E00767FF7 /* XLKLine.AccessoryRSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */; };
 		996361662490C75D00767FF7 /* XLKLine.AccessoryWR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */; };
@@ -97,6 +99,8 @@
 		9906A07724A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLKLine.CandleStick\U0010Timeline.swift"; sourceTree = "<group>"; };
 		9906A07924A0ADAA002E3F51 /* XLKLine.CandleStickTimelineBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.CandleStickTimelineBrush.swift; sourceTree = "<group>"; };
 		9906A07B24A1A8B5002E3F51 /* XLKLineDrawHorizontalAxisScaleLineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLineDrawHorizontalAxisScaleLineProtocol.swift; sourceTree = "<group>"; };
+		9906A07E24A2FBB7002E3F51 /* XLKLine.DisplayNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.DisplayNumber.swift; sourceTree = "<group>"; };
+		9906A08024A326DC002E3F51 /* XLKLine.DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.DetailView.swift; sourceTree = "<group>"; };
 		99636161248A294400767FF7 /* XLKLine.AccessoryKDJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryKDJ.swift; sourceTree = "<group>"; };
 		99636163248F679E00767FF7 /* XLKLine.AccessoryRSI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryRSI.swift; sourceTree = "<group>"; };
 		996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLKLine.AccessoryWR.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 				996361652490C75D00767FF7 /* XLKLine.AccessoryWR.swift */,
 				99D5FBD124655D7800A8C716 /* XLKLine.CandleStickBarBrushModel.swift */,
 				9906A0712499C264002E3F51 /* XLKLine.TimestampType.swift */,
+				9906A07E24A2FBB7002E3F51 /* XLKLine.DisplayNumber.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				99D5FB992463E03700A8C716 /* XLKLine.VolumeView.swift */,
 				99D5FB9B2463E03700A8C716 /* XLKLine.AccessoryView.swift */,
 				99D5FB9A2463E03700A8C716 /* XLKLine.DateView.swift */,
+				9906A08024A326DC002E3F51 /* XLKLine.DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +548,8 @@
 				99D5FBCC2463F60600A8C716 /* XLKLineDrawVerticalAxisScaleLineProtocol.swift in Sources */,
 				9906A07824A089B5002E3F51 /* XLKLine.CandleStickTimeline.swift in Sources */,
 				99CEAA4A2480E7ED00E689FB /* XLKLine.AccessoryMACD.swift in Sources */,
+				9906A07F24A2FBB7002E3F51 /* XLKLine.DisplayNumber.swift in Sources */,
+				9906A08124A326DC002E3F51 /* XLKLine.DetailView.swift in Sources */,
 				99B05CDB2473DA6B00CDC5A0 /* XLKLine.Manager+DisplayBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
