@@ -54,7 +54,7 @@ extension XLKLine.Model {
     /// - Returns: 时间
     public func displayDate(format: String,
                             timestampType: XLKLine.TimestampType) -> String {
-        
+
         let date = Date(timeIntervalSince1970: self.date / Double(timestampType.rawValue))
         let formatter = DateFormatter()
         formatter.dateFormat = format

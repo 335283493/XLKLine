@@ -48,8 +48,14 @@ extension XLKLine {
         /// 跌的颜色
         var decreaseColor: UIColor = Color(hex: 0x00B07C)
         
-        /// 选中视图颜色
-        var selectViewBackgroundColor: UIColor = Color(hex: 0xFFFFFF).withAlphaComponent(0.3)
+        /// 长按指示条颜色
+        var indicatorBarColor: UIColor = Color(hex: 0xFFFFFF).withAlphaComponent(0.3)
+        
+        /// 长按指示圆点颜色
+        var indicatorDotColor: UIColor = Color(hex: 0xFFFFFF)
+        
+        /// 长按指示圆点半径
+        var indicatorDotRadius: CGFloat = 2
         
         /// 量视图高度
         var volumeViewHeightScale: CGFloat = 0.12
@@ -132,6 +138,12 @@ extension XLKLine {
         /// 副视图水平刻度线数量
         var accessoryHorizontalAxisScaleLineCount: Int = 1
         
+        /// 日期文案字体
+        var dateTextFont = UIFont.systemFont(ofSize: 10)
+        
+        /// 日期文案颜色
+        var dateTextColor = Color(hex: 0x768AA7)
+        
         /// 分时线 日期格式
         var realTimeDateFormat = "HH:mm"
         
@@ -147,6 +159,42 @@ extension XLKLine {
         /// 周 日期格式
         var monthDateFormat = "yyyy-MM-dd"
         
+        /// 详情界面时间文案
+        var detailTimeText = "时间"
+        
+        /// 详情界面开文案
+        var detailOpenText = "开"
+        
+        /// 详情界面高文案
+        var detailHighText = "高"
+        
+        /// 详情界面低文案
+        var detailLowText = "低"
+        
+        /// 详情界面收文案
+        var detailCloseText = "收"
+        
+        /// 详情界面盈亏额文案
+        var detailChangeText = "盈亏额"
+        
+        /// 详情界面盈亏比文案
+        var detailChgText = "盈亏比"
+        
+        /// 详情界面成交量文案
+        var detailVolumeText = "成交量"
+        
+        /// 详情界面显示信息类型
+        var detailInfoTypes: [DetailView.InfoType] = [
+            .time,
+            .open,
+            .high,
+            .low,
+            .close,
+            .change,
+            .chg,
+            .volume
+        ]
+    
         /// 外观布局
         var viewStyles: [XLKLine.ViewStyle] = [.candleStick, .volume, .accessory, .date]
         

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol XLKLineDrawHorizontalAxisScaleLineProtocol {
+protocol XLKLineDrawHorizontalLineProtocol {
     
     /// 绘制水平网格线
     /// - Parameters:
@@ -18,15 +18,15 @@ protocol XLKLineDrawHorizontalAxisScaleLineProtocol {
     ///   - lineCount: 网格线数量
     ///   - lineColor: 网格线颜色
     ///   - lineWidth: 网格线宽度
-    func drawVerticalAxisScaleLines(context: CGContext,
-                                    drawSize: CGSize,
-                                    contentInset: UIEdgeInsets,
-                                    lineCount: Int,
-                                    lineColor: UIColor,
-                                    lineWidth: CGFloat)
+    func drawHorizontalLines(context: CGContext,
+                             drawSize: CGSize,
+                             contentInset: UIEdgeInsets,
+                             lineCount: Int,
+                             lineColor: UIColor,
+                             lineWidth: CGFloat)
 }
 
-extension XLKLineDrawHorizontalAxisScaleLineProtocol {
+extension XLKLineDrawHorizontalLineProtocol {
     
     /// 实现绘制水平网格线
     /// - Parameters:
@@ -36,12 +36,12 @@ extension XLKLineDrawHorizontalAxisScaleLineProtocol {
     ///   - lineCount: 网格线数量
     ///   - lineColor: 网格线颜色
     ///   - lineWidth: 网格线宽度
-    func drawHorizontalAxisScaleLines(context: CGContext,
-                                      drawSize: CGSize,
-                                      contentInset: UIEdgeInsets,
-                                      lineCount: Int,
-                                      lineColor: UIColor,
-                                      lineWidth: CGFloat) {
+    func drawHorizontalLines(context: CGContext,
+                             drawSize: CGSize,
+                             contentInset: UIEdgeInsets,
+                             lineCount: Int,
+                             lineColor: UIColor,
+                             lineWidth: CGFloat) {
         
         let spaceHeight = (drawSize.height - contentInset.top - contentInset.bottom) / CGFloat(lineCount + 1)
         let width = drawSize.width

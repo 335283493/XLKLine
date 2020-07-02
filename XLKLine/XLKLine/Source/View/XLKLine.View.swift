@@ -57,6 +57,10 @@ extension XLKLine {
         /// 详情图
         private lazy var detailView: XLKLine.DetailView = {
             var view = XLKLine.DetailView(manager: manager)
+            view.indicatorDotPosition = { [weak self] (position) in
+            
+                return self?.candleStickView.displayFocalPosition(at: position.x)
+            }
             view.isHidden = true
             addSubview(view)
             return view

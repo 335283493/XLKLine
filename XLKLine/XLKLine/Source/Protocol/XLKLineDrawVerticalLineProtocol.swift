@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol XLKLineDrawVerticalAxisScaleLineProtocol {
+protocol XLKLineDrawVerticalLineProtocol {
     
     /// 绘制垂直网格线
     /// - Parameters:
@@ -18,15 +18,15 @@ protocol XLKLineDrawVerticalAxisScaleLineProtocol {
     ///   - lineCount: 网格线数量
     ///   - lineColor: 网格线颜色
     ///   - lineWidth: 网格线宽度
-    func drawVerticalAxisScaleLines(context: CGContext,
-                                    drawSize: CGSize,
-                                    contentInset: UIEdgeInsets,
-                                    lineCount: Int,
-                                    lineColor: UIColor,
-                                    lineWidth: CGFloat)
+    func drawVerticalLines(context: CGContext,
+                           drawSize: CGSize,
+                           contentInset: UIEdgeInsets,
+                           lineCount: Int,
+                           lineColor: UIColor,
+                           lineWidth: CGFloat)
 }
 
-extension XLKLineDrawVerticalAxisScaleLineProtocol {
+extension XLKLineDrawVerticalLineProtocol {
     
     /// 实现绘制垂直网格线
     /// - Parameters:
@@ -36,12 +36,12 @@ extension XLKLineDrawVerticalAxisScaleLineProtocol {
     ///   - lineCount: 网格线数量
     ///   - lineColor: 网格线颜色
     ///   - lineWidth: 网格线宽度
-    func drawVerticalAxisScaleLines(context: CGContext,
-                                    drawSize: CGSize,
-                                    contentInset: UIEdgeInsets,
-                                    lineCount: Int,
-                                    lineColor: UIColor,
-                                    lineWidth: CGFloat) {
+    func drawVerticalLines(context: CGContext,
+                           drawSize: CGSize,
+                           contentInset: UIEdgeInsets,
+                           lineCount: Int,
+                           lineColor: UIColor,
+                           lineWidth: CGFloat) {
         
         let spaceWidth = (drawSize.width - contentInset.left - contentInset.right) / CGFloat(lineCount + 1)
         let height = drawSize.height

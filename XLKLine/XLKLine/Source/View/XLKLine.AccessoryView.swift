@@ -18,7 +18,7 @@ extension XLKLine {
         /// 绘制网格
         func drawAxisScaleLines() {
             
-            drawVerticalAxisScaleLines()
+            drawVerticalLines()
         }
         
         /// 重置
@@ -55,20 +55,20 @@ extension XLKLine {
 }
 
 // MARK: - 绘制网格
-extension XLKLine.AccessoryView: XLKLineDrawVerticalAxisScaleLineProtocol {
+extension XLKLine.AccessoryView: XLKLineDrawVerticalLineProtocol {
     
     /// 绘制垂直网格
-    func drawVerticalAxisScaleLines() {
+    func drawVerticalLines() {
         
         guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
-        drawVerticalAxisScaleLines(context: context,
-                                   drawSize: bounds.size,
-                                   contentInset: .zero,
-                                   lineCount: manager.config.verticalAxisScaleLineCount,
-                                   lineColor: manager.config.axisScaleLineColor,
-                                   lineWidth: manager.config.axisScaleLineWidth)
+        drawVerticalLines(context: context,
+                          drawSize: bounds.size,
+                          contentInset: .zero,
+                          lineCount: manager.config.verticalAxisScaleLineCount,
+                          lineColor: manager.config.axisScaleLineColor,
+                          lineWidth: manager.config.axisScaleLineWidth)
     }
     
     /// 绘制指标

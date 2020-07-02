@@ -90,6 +90,35 @@ extension XLKLine {
                                                              limitValue: limitValue,
                                                              config: config)
         }
+        
+        /// 获取蜡烛图一个模型
+        /// - Parameters:
+        ///   - bounds: 绘制范围
+        ///   - index: 索引
+        /// - Returns: 模型
+        open func displayCandleStickBarModel(bounds: CGRect,
+                                             at index: Int) -> XLKLineCandleStickBarBrushProtocol? {
+            
+            let models = displayCandleStickBarModel(bounds: bounds)
+            if index < 0 || models.count <= index {
+                return nil
+            }
+            return models[index]
+        }
+        
+        /// 获取蜡烛图一个模型
+        /// - Parameters:
+        ///   - bounds: 绘制范围
+        ///   - positionX: 模型显示位置
+        /// - Returns: 模型
+        open func displayCandleStickBarModel(bounds: CGRect,
+                                             positionX: CGFloat) -> XLKLineCandleStickBarBrushProtocol? {
+            
+            guard let index = barIndex(positionX: positionX) else {
+                return nil
+            }
+            return displayCandleStickBarModel(bounds: bounds, at: index)
+        }
 
         open func displayCandleStickTimeLineModel(bounds: CGRect) -> CandleStickTimeline? {
             
@@ -103,6 +132,36 @@ extension XLKLine {
                                                         bounds: bounds,
                                                         limitValue: limitValue,
                                                         config: config)
+        }
+        
+        /// 分时图单个数据坐标
+        /// - Parameters:
+        ///   - bounds: 绘制范围
+        ///   - index: 显示位置
+        /// - Returns: 坐标
+        open func dispalyCandleStickTimeLineModelPosition(bounds: CGRect,
+                                                          at index: Int) -> CGPoint? {
+            let display = displayIndicatorModels()
+            let index = index + display.leadingPreloadModels.count
+            if index < 0 || models.count <= index {
+                return nil
+            }
+            return displayCandleStickTimeLineModel(bounds: bounds)?.positions[index]
+        }
+        
+        /// 分时图单个数据坐标
+        /// - Parameters:
+        ///   - bounds: 绘制范围
+        ///   - positionX: 显示位置
+        /// - Returns: 坐标
+        open func dispalyCandleStickTimeLineModelPosition(bounds: CGRect,
+                                                          positionX: CGFloat) -> CGPoint? {
+            
+            guard let index = barIndex(positionX: positionX) else {
+                return nil
+            }
+            return dispalyCandleStickTimeLineModelPosition(bounds: bounds,
+                                                           at: index)
         }
         
         /// 蜡烛图绘制指标模型
@@ -264,14 +323,14 @@ extension XLKLine {
         /// x坐标重叠数据的index
         /// - Parameter locationX: x坐标
         /// - Returns: 数据的index
-        open func barIndex(locationX: CGFloat) -> Int? {
+        open func barIndex(positionX: CGFloat) -> Int? {
             
             let models = displayBarModels()
             guard !models.isEmpty else {
                 return nil
             }
             let unitSpace = config.klineWidth + config.klineSpace
-            return min(Int(locationX / unitSpace), models.count - 1)
+            return min(Int(positionX / unitSpace), models.count - 1)
         }
         
         /// x坐标重叠的数据
@@ -279,7 +338,7 @@ extension XLKLine {
         /// - Returns: 重叠的数据
         open func model(locationX: CGFloat) -> XLKLine.Model? {
             
-            guard let index = barIndex(locationX: locationX) else {
+            guard let index = barIndex(positionX: locationX) else {
                 return nil
             }
             return displayBarModels()[index]
@@ -291,7 +350,7 @@ extension XLKLine {
         open func barFrameX(locationX: CGFloat) -> CGFloat? {
             
             let unitSpace = config.klineWidth + config.klineSpace
-            guard let index = barIndex(locationX: locationX) else {
+            guard let index = barIndex(positionX: locationX) else {
                 return nil
             }
             return CGFloat(index) * unitSpace + 1.5

@@ -16,15 +16,36 @@ extension XLKLine {
         
         open var longPressPosition: CGPoint?
         
-        private lazy var selectLayer: CAGradientLayer = {
+        /// 获取指示点位置
+        open var indicatorDotPosition: ((CGPoint)->(CGPoint?))?
+        
+        /// 获取指示数据
+        open var indicatorModel: ((CGPoint)->(XLKLine.Model?))?
+        
+        /// 指示点
+        private lazy var indicatorDotLayer: CALayer = {
+            
+            let radius = manager.config.indicatorDotRadius
+            var dotlayer = CALayer()
+            dotlayer.backgroundColor = manager.config.indicatorDotColor.cgColor
+            dotlayer.bounds = CGRect(origin: .zero,
+                                     size: CGSize(width: radius * 2, height: radius * 2))
+            dotlayer.cornerRadius = radius
+            dotlayer.masksToBounds = true
+            layer.addSublayer(dotlayer)
+            return dotlayer
+        }()
+        
+        /// 指示条
+        private lazy var indicatorBarLayer: CAGradientLayer = {
             
             var gradientLayer = CAGradientLayer()
             gradientLayer.startPoint = CGPoint(x: 0, y: 0)
             gradientLayer.endPoint = CGPoint(x: 0, y: 1)
             gradientLayer.colors = [
-                manager.config.selectViewBackgroundColor.withAlphaComponent(0.1).cgColor,
-                manager.config.selectViewBackgroundColor.cgColor,
-                manager.config.selectViewBackgroundColor.withAlphaComponent(0.1).cgColor
+                manager.config.indicatorBarColor.withAlphaComponent(0.01).cgColor,
+                manager.config.indicatorBarColor.cgColor,
+                manager.config.indicatorBarColor.withAlphaComponent(0.01).cgColor
             ]
 //            gradientLayer.locations = [0,0.25,1]
             layer.addSublayer(gradientLayer)
@@ -34,10 +55,42 @@ extension XLKLine {
         open func reloadData() {
 
             isHidden = longPressPosition == nil
-            reloadSelectLayer()
+            reloadIndicatorDot()
+            reloadIndicatorBar()
+            
         }
         
-        open func reloadSelectLayer() {
+        open func reloadDetailView() {
+            
+            guard let longPressPosition = longPressPosition,
+                let model = indicatorModel?(longPressPosition) else {
+            
+                return
+            }
+            print(model)
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            reloadData()
+        }
+        
+        open func reloadIndicatorDot() {
+            
+            guard let longPressPosition = longPressPosition,
+                let position = indicatorDotPosition?(longPressPosition) else {
+                
+                indicatorDotLayer.isHidden = true
+                return
+            }
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            indicatorDotLayer.position = position
+            indicatorDotLayer.isHidden = false
+            CATransaction.commit()
+        }
+        
+        open func reloadIndicatorBar() {
             
             guard let longPressPosition = longPressPosition,
                 let x = manager.barFrameX(locationX: longPressPosition.x) else {
@@ -50,19 +103,18 @@ extension XLKLine {
             
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            selectLayer.frame = CGRect(x: x,
+            indicatorBarLayer.frame = CGRect(x: x,
                                        y: y,
                                        width: width,
                                        height: height)
             CATransaction.commit()
-            print(selectLayer.frame)
         }
         
         // MARK: - Init
         public init(manager: XLKLine.Manager) {
             self.manager = manager
             super.init(frame: .zero)
-
+            
         }
         
         required public init?(coder: NSCoder) {

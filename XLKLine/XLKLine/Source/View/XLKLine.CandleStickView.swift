@@ -21,7 +21,7 @@ extension XLKLine {
         /// 绘制网格
         open func drawAxisScaleLines() {
             
-            drawVerticalAxisScaleLines()
+            drawVerticalLines()
         }
         
         /// 重置
@@ -44,7 +44,7 @@ extension XLKLine {
         
         public override func layoutSubviews() {
             super.layoutSubviews()
-
+            
             backgroundColor = manager.config.candleStickBackgroundColor
         }
         
@@ -65,7 +65,7 @@ extension XLKLine {
 extension XLKLine.CandleStickView {
     
     open func drawCandleStickData() {
-
+        
         switch manager.config.timeLineType {
         case .timeline:
             drawTimeline()
@@ -87,7 +87,7 @@ extension XLKLine.CandleStickView {
     
     /// 绘制分时图
     open func drawTimeline() {
-
+        
         guard let model = manager.displayCandleStickTimeLineModel(bounds: bounds) else {
             return
         }
@@ -115,20 +115,20 @@ extension XLKLine.CandleStickView {
 }
 
 // MARK: - 绘制网格
-extension XLKLine.CandleStickView: XLKLineDrawVerticalAxisScaleLineProtocol, XLKLineDrawHorizontalAxisScaleLineProtocol {
+extension XLKLine.CandleStickView: XLKLineDrawVerticalLineProtocol, XLKLineDrawHorizontalLineProtocol {
     
     /// 绘制垂直网格
-    open func drawVerticalAxisScaleLines() {
+    open func drawVerticalLines() {
         
         guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
-        drawVerticalAxisScaleLines(context: context,
-                                   drawSize: bounds.size,
-                                   contentInset: .zero,
-                                   lineCount: manager.config.verticalAxisScaleLineCount,
-                                   lineColor: manager.config.axisScaleLineColor,
-                                   lineWidth: manager.config.axisScaleLineWidth)
+        drawVerticalLines(context: context,
+                          drawSize: bounds.size,
+                          contentInset: .zero,
+                          lineCount: manager.config.verticalAxisScaleLineCount,
+                          lineColor: manager.config.axisScaleLineColor,
+                          lineWidth: manager.config.axisScaleLineWidth)
     }
     
     /// 绘制水平网格
@@ -137,12 +137,12 @@ extension XLKLine.CandleStickView: XLKLineDrawVerticalAxisScaleLineProtocol, XLK
         guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
-        drawHorizontalAxisScaleLines(context: context,
-                                     drawSize: bounds.size,
-                                     contentInset: manager.config.candleStickContentInset,
-                                     lineCount: manager.config.candleStickHorizontalAxisScaleLineCount,
-                                     lineColor: manager.config.axisScaleLineColor,
-                                     lineWidth: manager.config.axisScaleLineWidth)
+        drawHorizontalLines(context: context,
+                            drawSize: bounds.size,
+                            contentInset: manager.config.candleStickContentInset,
+                            lineCount: manager.config.candleStickHorizontalAxisScaleLineCount,
+                            lineColor: manager.config.axisScaleLineColor,
+                            lineWidth: manager.config.axisScaleLineWidth)
     }
 }
 
@@ -153,12 +153,8 @@ extension XLKLine.CandleStickView {
     /// - Returns: 轴刻度文案控件
     open func initAxisScaleLayer() -> CATextLayer {
         
-        let textLayer = CATextLayer()
-        textLayer.font = CGFont(manager.config.candleStickAxisScaleFont.fontName as CFString)
-        textLayer.fontSize = manager.config.candleStickAxisScaleFont.pointSize
-        textLayer.foregroundColor = manager.config.candleStickAxisScaleTextColor.cgColor
-        textLayer.isWrapped = true
-        textLayer.contentsScale = UIScreen.main.scale
+        let textLayer = XLKLine.TextLayer(font: manager.config.candleStickAxisScaleFont,
+                                          textColor: manager.config.candleStickAxisScaleTextColor)
         textLayer.alignmentMode = .right
         return textLayer
     }
@@ -179,7 +175,7 @@ extension XLKLine.CandleStickView {
             
             return
         }
-
+        
         removeAxisScaleLayers()
         let config = manager.config
         let contentInset = config.candleStickContentInset
@@ -191,9 +187,9 @@ extension XLKLine.CandleStickView {
         let textLayerCount = lineCount + 1
         let differentValue = limitValue.max - limitValue.min
         let unitValue = differentValue / Double(lineCount)
-
+        
         for index in 0 ..< textLayerCount {
-  
+            
             let textLayer = initAxisScaleLayer()
             let frame: CGRect
             if index == 0 {
@@ -213,3 +209,28 @@ extension XLKLine.CandleStickView {
         }
     }
 }
+
+// MARK: - 根据用户点击的位置获取绘制点的位置
+extension XLKLine.CandleStickView {
+    
+    /// 显示的焦点位置
+    /// - Parameter positionX: 横坐标
+    /// - Returns: 焦点位置
+    func displayFocalPosition(at positionX: CGFloat) -> CGPoint? {
+        
+        switch manager.config.timeLineType {
+        case .timeline:
+            
+            return manager.dispalyCandleStickTimeLineModelPosition(bounds: bounds,
+                                                                   positionX: positionX)
+        default:
+            guard let model = manager.displayCandleStickBarModel(bounds: bounds,
+                                                                 positionX: positionX),
+                let position = model.body.positions.last else {
+                    return nil
+            }
+            return position
+        }
+    }
+}
+
